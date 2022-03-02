@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Release Process &mdash; PyExifTool 0.5.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PyExifTool
+          </a>
+              <div class="version">
+                0.5
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../package.html">Package Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/1-exiftool.html">Class exiftool.ExifTool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/2-helper.html">Class exiftool.ExifToolHelper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/3-alpha.html">Class exiftool.ExifToolAlpha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyExifTool</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Release Process</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/maintenance/release-process.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="release-process">
+<h1>Release Process<a class="headerlink" href="#release-process" title="Permalink to this headline"></a></h1>
+<p>This page documents the steps to be taken to release a new version of PyExifTool.</p>
+<section id="source-preparation">
+<h2>Source Preparation<a class="headerlink" href="#source-preparation" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Update the version number in <code class="docutils literal notranslate"><span class="pre">exiftool/__init__.py</span></code></p></li>
+<li><p>Add any changelog entries to <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code></p></li>
+<li><p>Run Tests</p></li>
+<li><p>Generate docs</p></li>
+<li><p>Commit and push the changes.</p></li>
+<li><p>Check that the tests passed on GitHub.</p></li>
+</ol>
+</section>
+<section id="pre-requisites">
+<h2>Pre-Requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline"></a></h2>
+<p>Make sure the latest packages are installed.</p>
+<ol class="arabic simple">
+<li><p>pip: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">pip</span></code></p></li>
+<li><p>build tools: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">setuptools</span> <span class="pre">build</span></code></p></li>
+<li><p>for uploading to PyPI: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">twine</span></code></p></li>
+</ol>
+</section>
+<section id="run-tests">
+<h2>Run Tests<a class="headerlink" href="#run-tests" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Run in standard unittest: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">unittest</span> <span class="pre">-v</span></code></p></li>
+<li><p>Run in PyTest: <code class="docutils literal notranslate"><span class="pre">scripts\pytest.bat</span></code></p></li>
+</ol>
+</section>
+<section id="build-and-check">
+<h2>Build and Check<a class="headerlink" href="#build-and-check" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Build package: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">build</span></code></p></li>
+<li><p><a class="reference external" href="https://packaging.python.org/guides/making-a-pypi-friendly-readme/#validating-restructuredtext-markup">Validating reStructuredText markup</a>: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">twine</span> <span class="pre">check</span> <span class="pre">dist/*</span></code></p></li>
+</ol>
+</section>
+<section id="upload-to-test-pypi">
+<h2>Upload to Test PyPI<a class="headerlink" href="#upload-to-test-pypi" title="Permalink to this headline"></a></h2>
+<p>Set up the <code class="docutils literal notranslate"><span class="pre">$HOME/.pypirc</span></code> (Linux) or <code class="docutils literal notranslate"><span class="pre">%UserProfile%\.pypirc</span></code> (Windows)</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">--repository</span> <span class="pre">testpypi</span> <span class="pre">dist/*</span></code></p></li>
+<li><p>Check package uploaded properly: <a class="reference external" href="https://test.pypi.org/project/PyExifTool/#history">TestPyPI PyExifTool</a></p></li>
+<li><p>Test in a new temporary venv: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">-i</span> <span class="pre">https://test.pypi.org/simple/</span> <span class="pre">PyExifTool==&lt;version&gt;</span></code></p>
+<ul class="simple">
+<li><p>If there is an error with SSL verification, just trust it: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--trusted-host</span> <span class="pre">test-files.pythonhosted.org</span> <span class="pre">-U</span> <span class="pre">-i</span> <span class="pre">https://test.pypi.org/simple/</span> <span class="pre">PyExifTool==&lt;version&gt;</span></code></p></li>
+</ul>
+</li>
+<li><p>Run tests and examine files installed</p></li>
+<li><p>Cleanup: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">uninstall</span> <span class="pre">PyExifTool</span></code>, then delete temp venv</p></li>
+</ol>
+</section>
+<section id="release">
+<h2>Release<a class="headerlink" href="#release" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p>Be very sure all the tests pass and the package is good, because <a class="reference external" href="https://pypi.org/help/#file-name-reuse">PyPI does not allow for a filename to be reused</a></p></li>
+<li><p>Release to production PyPI: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">dist/*</span></code></p></li>
+<li><p>If needed, create a tag, and a GitHub release with the <em>whl</em> file</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git tag -a vX.X.X
+git push --tags
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kevin M (sylikc).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

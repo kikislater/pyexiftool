@@ -1,0 +1,75 @@
+:py:mod:`exiftool.constants`
+============================
+
+.. py:module:: exiftool.constants
+
+.. autoapi-nested-parse::
+
+   This file defines constants which are used by other modules in the package
+
+
+
+Module Contents
+---------------
+
+.. py:data:: DEFAULT_BLOCK_SIZE
+   :annotation: :int = 4096
+
+   The default block size when reading from exiftool.  The standard value
+   should be fine, though other values might give better performance in
+   some cases.
+
+
+.. py:data:: DEFAULT_EXECUTABLE
+   :annotation: :str
+
+   The name of the default executable to run.
+
+   ``exiftool`` (Linux) or ``exiftool.exe`` (Windows)
+
+   By default, the executable is searched for on one of the paths listed in the
+   ``PATH`` environment variable.  If it's not on the ``PATH``, a full path should be given to the ExifTool constructor.
+
+
+.. py:data:: DEFAULT_EXECUTABLE
+   :annotation: = exiftool.exe
+
+   
+
+.. py:data:: EXIFTOOL_MINIMUM_VERSION
+   :annotation: = 12.15
+
+   this is the minimum *exiftool* version required for current version of PyExifTool
+
+   * 8.40 / 8.60 (production): implemented the -stay_open flag
+   * 12.10 / 12.15 (production): implemented exit status on -echo4
+
+
+.. py:data:: PLATFORM_LINUX
+   :annotation: :bool
+
+   sys.platform check, set to True if Linux
+
+
+.. py:data:: PLATFORM_WINDOWS
+   :annotation: :bool
+
+   sys.platform check, set to True if Windows
+
+
+.. py:data:: PR_SET_PDEATHSIG
+   :annotation: :int = 1
+
+   taken from linux/prctl.h
+
+   Allows a kill signal to be sent to child processes when the parent unexpectedly dies
+
+
+.. py:data:: SW_FORCEMINIMIZE
+   :annotation: :int = 11
+
+   Windows ShowWindow constant from win32con
+
+   Indicates the launched process window should start minimized
+
+

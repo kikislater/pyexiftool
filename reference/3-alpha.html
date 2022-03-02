@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class exiftool.ExifToolAlpha &mdash; PyExifTool 0.5.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Class exiftool.ExifToolHelper" href="2-helper.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PyExifTool
+          </a>
+              <div class="version">
+                0.5
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../package.html">Package Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-exiftool.html">Class exiftool.ExifTool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-helper.html">Class exiftool.ExifToolHelper</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Class exiftool.ExifToolAlpha</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.copy_tags">copy_tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.execute_json_wrapper">execute_json_wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.get_metadata_batch_wrapper">get_metadata_batch_wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.get_metadata_wrapper">get_metadata_wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.get_tag">get_tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.get_tag_batch">get_tag_batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.get_tag_batch_wrapper">get_tag_batch_wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.get_tag_wrapper">get_tag_wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.get_tags_batch_wrapper">get_tags_batch_wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.get_tags_wrapper">get_tags_wrapper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.set_keywords">set_keywords</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.set_keywords_batch">set_keywords_batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.set_tags">set_tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.set_tags_batch">set_tags_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyExifTool</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Class exiftool.ExifToolAlpha</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/3-alpha.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-exiftool.ExifToolAlpha">
+<span id="class-exiftool-exiftoolalpha"></span><h1>Class exiftool.ExifToolAlpha<a class="headerlink" href="#module-exiftool.ExifToolAlpha" title="Permalink to this headline"></a></h1>
+<p>this class extends the ExifToolHelper class with alpha-quality code, which,
+may add functionality, but may introduce bugs or add in unneeded bloat which may
+be specific to niche use cases</p>
+<p>lots of these methods are from the original incarnation of pyexiftool
+with miscellaneous added pull requests.</p>
+<p>There’s a lot of extra functionality, but the code quality leaves a lot to be desired</p>
+<p>And in some cases, there are edge cases which return unexpected results… so
+they will be placed into this class until the functionality can be standardized in a “stable” way</p>
+<p>Please issue PR to this class to add functionality, even if not tested well.  This class is for experimental code after all!</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.copy_tags">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">copy_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.copy_tags" title="Permalink to this definition"></a></dt>
+<dd><p>Copy all tags from one file to another.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.execute_json_wrapper">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">execute_json_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry_on_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.execute_json_wrapper" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.get_metadata_batch_wrapper">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">get_metadata_batch_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.get_metadata_batch_wrapper" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.get_metadata_wrapper">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">get_metadata_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.get_metadata_wrapper" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.get_tag">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">get_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.get_tag" title="Permalink to this definition"></a></dt>
+<dd><p>Extract a single tag from a single file.</p>
+<p>The return value is the value of the specified tag, or
+<code class="docutils literal notranslate"><span class="pre">None</span></code> if this tag was not found in the file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.get_tag_batch">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">get_tag_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.get_tag_batch" title="Permalink to this definition"></a></dt>
+<dd><p>Extract a single tag from the given files.</p>
+<p>The first argument is a single tag name, as usual in the
+format &lt;group&gt;:&lt;tag&gt;.</p>
+<p>The second argument is an iterable of file names.</p>
+<p>The return value is a list of tag values or <code class="docutils literal notranslate"><span class="pre">None</span></code> for
+non-existent tags, in the same order as <code class="docutils literal notranslate"><span class="pre">filenames</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.get_tag_batch_wrapper">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">get_tag_batch_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.get_tag_batch_wrapper" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.get_tag_wrapper">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">get_tag_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.get_tag_wrapper" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.get_tags_batch_wrapper">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">get_tags_batch_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.get_tags_batch_wrapper" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.get_tags_wrapper">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">get_tags_wrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.get_tags_wrapper" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.set_keywords">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">set_keywords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.set_keywords" title="Permalink to this definition"></a></dt>
+<dd><p>Modifies the keywords tag for the given file.</p>
+<p>This is a convenience function derived from <cite>set_keywords_batch()</cite>.
+Only difference is that it takes as last argument only one file name
+as a string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.set_keywords_batch">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">set_keywords_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.set_keywords_batch" title="Permalink to this definition"></a></dt>
+<dd><p>Modifies the keywords tag for the given files.</p>
+<p>The first argument is the operation mode:</p>
+<ul class="simple">
+<li><p>KW_REPLACE: Replace (i.e. set) the full keywords tag with <cite>keywords</cite>.</p></li>
+<li><dl class="simple">
+<dt>KW_ADD:     Add <cite>keywords</cite> to the keywords tag.</dt><dd><p>If a keyword is present, just keep it.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>KW_REMOVE:  Remove <cite>keywords</cite> from the keywords tag.</dt><dd><p>If a keyword wasn’t present, just leave it.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The second argument is an iterable of key words.</p>
+<p>The third argument is an iterable of file names.</p>
+<p>The format of the return value is the same as for
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code>.</p>
+<p>It can be passed into <cite>check_ok()</cite> and <cite>format_error()</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.set_tags">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">set_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.set_tags" title="Permalink to this definition"></a></dt>
+<dd><p>Writes the values of the specified tags for the given file.</p>
+<p>This is a convenience function derived from <cite>set_tags_batch()</cite>.
+Only difference is that it takes as last arugemnt only one file name
+as a string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.set_tags_batch">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">set_tags_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.set_tags_batch" title="Permalink to this definition"></a></dt>
+<dd><p>Writes the values of the specified tags for the given files.</p>
+<p>The first argument is a dictionary of tags and values.  The tag names may
+include group names, as usual in the format &lt;group&gt;:&lt;tag&gt;.</p>
+<p>The second argument is an iterable of file names.</p>
+<p>The format of the return value is the same as for
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code>.</p>
+<p>It can be passed into <cite>check_ok()</cite> and <cite>format_error()</cite>.</p>
+<p>tags items can be lists, in which case, the tag will be passed
+with each item in the list, in the order given</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2-helper.html" class="btn btn-neutral float-left" title="Class exiftool.ExifToolHelper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kevin M (sylikc).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

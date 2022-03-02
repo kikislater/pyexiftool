@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Package Overview &mdash; PyExifTool 0.5.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PyExifTool
+          </a>
+              <div class="version">
+                0.5
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#design">Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fork-origins-brief-history">Fork Origins / Brief History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/1-exiftool.html">Class exiftool.ExifTool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/2-helper.html">Class exiftool.ExifToolHelper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/3-alpha.html">Class exiftool.ExifToolAlpha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyExifTool</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Package Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/package.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="package-overview">
+<h1>Package Overview<a class="headerlink" href="#package-overview" title="Permalink to this headline"></a></h1>
+<section id="design">
+<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline"></a></h2>
+<p>PyExifTool was designed with flexibility and extensibility in mind.  The library consists of a few classes, each with increasingly more features.</p>
+<p>The base <code class="docutils literal notranslate"><span class="pre">ExifTool</span></code> class contains the core functionality exposed in the most rudimentary way, and each successive class inherits and adds functionality.</p>
+<div class="graphviz"><img src="_images/inheritance-b79239110014d6ea98b46176f462dc4cd7d8e75f.png" alt="Inheritance diagram of exiftool.ExifToolAlpha" usemap="#inheritance45bd26d457" class="inheritance graphviz" /></div>
+<map id="inheritance45bd26d457" name="inheritance45bd26d457">
+<area shape="rect" id="node1" href="reference/1-exiftool.html#module-exiftool.ExifTool" target="_top" title="Run the `exiftool` command&#45;line tool and communicate with it." alt="" coords="5,5,125,31"/>
+<area shape="rect" id="node3" href="reference/2-helper.html#module-exiftool.ExifToolHelper" target="_top" title="This class extends the low&#45;level :py:class:`exiftool.ExifTool` class with &#39;wrapper&#39;/&#39;helper&#39; functionality" alt="" coords="173,5,336,31"/>
+<area shape="rect" id="node2" href="reference/3-alpha.html#module-exiftool.ExifToolAlpha" target="_top" title="this class extends the ExifToolHelper class with alpha&#45;quality code, which," alt="" coords="384,5,540,31"/>
+</map><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">exiftool.ExifTool</span></code> is the base class with core logic to interface with PH’s ExifTool process.
+It contains only the core features with no extra fluff.
+The main methods provided are <code class="docutils literal notranslate"><span class="pre">execute()</span></code> and <code class="docutils literal notranslate"><span class="pre">execute_json()</span></code> which allows direct interaction with the underlying exiftool process.</p>
+<ul>
+<li><p>The API is considered stable and should not change much with future releases.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exiftool.ExifToolHelper</span></code> exposes some of the most commonly used functionality.  It overloads
+some inherited functions to turn common errors into warnings and adds logic to make
+<code class="docutils literal notranslate"><span class="pre">exiftool.ExifTool</span></code> easier to use.
+For example, <code class="docutils literal notranslate"><span class="pre">ExifToolHelper</span></code> provides wrapper functions to get metadata, and auto-starts the exiftool instance if it’s not running (instead of raising an Exception).
+<code class="docutils literal notranslate"><span class="pre">ExifToolHelper</span></code> demonstrates how to extend <code class="docutils literal notranslate"><span class="pre">ExifTool</span></code> to your liking if your project demands customizations not directly provided by <code class="docutils literal notranslate"><span class="pre">ExifTool</span></code>.</p>
+<ul>
+<li><p>More methods may be added and/or slight API tweaks may occur with future releases.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exiftool.ExifToolAlpha</span></code> further extends the <code class="docutils literal notranslate"><span class="pre">ExifToolHelper</span></code> and includes some community-contributed not-very-well-tested methods.
+These methods were formerly added ad-hoc by various community contributors, but no longer stand up to the rigor of the current design.
+<code class="docutils literal notranslate"><span class="pre">ExifToolAlpha</span></code> is <em>not</em> up to the rigorous testing standard of both
+<code class="docutils literal notranslate"><span class="pre">ExifTool</span></code> or <code class="docutils literal notranslate"><span class="pre">ExifToolHelper</span></code>.  There may be old, buggy, or defunct code.</p>
+<ul>
+<li><p>This is the least polished of the classes and functionality/API may be changed/added/removed on any release.</p></li>
+<li><p><strong>NOTE: The methods exposed may be changed/removed at any time.</strong></p></li>
+<li><p>If you are using any of these methods in your project, please <a class="reference external" href="https://github.com/sylikc/pyexiftool/issues">Submit an Issue</a> to start a discussion on making those functions more robust, and making their way into <code class="docutils literal notranslate"><span class="pre">ExifToolHelper</span></code>.
+(Think of <code class="docutils literal notranslate"><span class="pre">ExifToolAlpha</span></code> as ideas on how to extend <code class="docutils literal notranslate"><span class="pre">ExifTool</span></code>, where new functionality which may one day make it into the <code class="docutils literal notranslate"><span class="pre">ExifToolHelper</span></code> class.)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="fork-origins-brief-history">
+<h2>Fork Origins / Brief History<a class="headerlink" href="#fork-origins-brief-history" title="Permalink to this headline"></a></h2>
+<p>PyExifTool was originally developed by <a class="reference external" href="https://github.com/smarnach/pyexiftool">Sven Marnach</a> in 2012 to answer a
+stackoverflow question <a class="reference external" href="https://stackoverflow.com/questions/10075115/call-exiftool-from-a-python-script/10075210#10075210">Call exiftool from a python script?</a>.  Over time,
+Sven refined the code, added tests, documentation, and a slew of improvements.
+While PyExifTool gained popularity, Sven <a class="reference external" href="https://github.com/smarnach/pyexiftool/pull/31#issuecomment-569238073">never intended to maintain it</a> as
+an active project.  The <a class="reference external" href="https://github.com/smarnach/pyexiftool">original repository</a> was last updated in 2014.</p>
+<p>In early 2019, <a class="reference external" href="https://github.com/RootLUG">Martin Čarnogurský</a> created a <a class="reference external" href="https://pypi.org/project/PyExifTool/0.1.1/#history">PyPI release</a> from the
+2014 code.  Coincidentally in mid 2019, <a class="reference external" href="https://github.com/sylikc">Kevin M (sylikc)</a> forked the original
+repository and started merging PR and issues which were reported on Sven’s
+issues/PR page.</p>
+<p>In late 2019 and early 2020 there was a discussion started to
+<a class="reference external" href="https://github.com/smarnach/pyexiftool/pull/31">Provide visibility for an active fork</a>.  There was a conversation to
+transfer ownership of the original repository, have a coordinated plan to
+communicate to PyExifTool users, amongst other things, but it never materialized.</p>
+<p>Kevin M (sylikc) made the first release to PyPI repository in early 2021.
+At the same time, discussions were starting revolving around
+<a class="reference external" href="https://github.com/sylikc/pyexiftool/discussions/9">Deprecating Python 2.x compatibility</a> and <a class="reference external" href="https://github.com/sylikc/pyexiftool/discussions/10">refactoring the code and classes</a>.</p>
+<p>The latest version is the result of all of those discussions, designs,
+and development.  Special thanks to the community contributions, especially
+<a class="reference external" href="https://github.com/jangop">Jan Philip Göpfert</a>, <a class="reference external" href="https://github.com/csparker247">Seth P</a>, and <a class="reference external" href="https://github.com/ickc">Kolen Cheung</a>.</p>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
+<p>PyExifTool is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the licence, or
+(at your option) any later version, or the BSD licence.</p>
+<p>PyExifTool is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
+<p>See <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code> for more details.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kevin M (sylikc).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

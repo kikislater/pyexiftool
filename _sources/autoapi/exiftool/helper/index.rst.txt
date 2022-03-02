@@ -1,0 +1,123 @@
+:py:mod:`exiftool.helper`
+=========================
+
+.. py:module:: exiftool.helper
+
+.. autoapi-nested-parse::
+
+   This contains a helper class, which makes it easier to use the low-level ExifTool class
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   exiftool.helper.ExifToolHelper
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   exiftool.helper._is_iterable
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   exiftool.helper.basestring
+
+
+.. py:data:: basestring
+   
+
+   
+
+.. py:class:: ExifToolHelper(auto_start=True, **kwargs)
+
+   Bases: :py:obj:`exiftool.exiftool.ExifTool`
+
+   This class extends the low-level :py:class:`exiftool.ExifTool` class with 'wrapper'/'helper' functionality
+
+   It keeps low-level core functionality with the base class but extends helper functions in a separate class
+
+   .. py:method:: execute(self, *params)
+
+      override the execute() method
+
+      Adds logic to auto-start if not running, if auto_start == True
+
+
+   .. py:method:: get_metadata(self, files, params=None)
+
+      Return all meta-data for the given files.
+
+      Files parameter matches :py:meth:`get_tags()`
+
+      wildcard strings are accepted as it's passed straight to exiftool
+
+      The return value will have the format described in the
+      documentation of :py:meth:`get_tags()`.
+
+
+   .. py:method:: get_tags(self, files, tags, params=None)
+
+      Return only specified tags for the given files.
+
+      The first argument is the files to be worked on.  It can be:
+
+      * an iterable of strings/bytes
+      * string/bytes
+
+      The list is copied and any non-basestring elements are converted to str (to support PurePath and other similar objects)
+
+      Filenames are NOT checked for existence, that is left up to the caller.
+      It is passed directly to exiftool, which supports wildcards, etc.  Please refer to the exiftool documentation
+
+
+      The second argument is an iterable of tags.  The tag names may
+      include group names, as usual in the format <group>:<tag>.
+
+      If tags is None, or [], then returns all tags
+
+
+      The format of the return value is the same as for
+      :py:meth:`exiftool.ExifTool.execute_json()`.
+
+
+   .. py:method:: run(self)
+
+      override the run() method
+
+      Adds logic to check if already running.  Will not attempt to run if already running (so no warning about 'ExifTool already running' will trigger) 
+
+
+   .. py:method:: terminate(self, **opts)
+
+      override the terminate() method
+
+      Adds logic to check if not running (so no warning about 'ExifTool not running' will trigger)
+
+      opts are passed directly to the parent verbatim
+
+
+
+.. py:function:: _is_iterable(in_param)
+
+   Checks if this item is iterable, instead of using isinstance(list), anything iterable can be ok
+
+   NOTE: STRINGS ARE CONSIDERED ITERABLE by Python
+
+   if you need to consider a code path for strings first, check that before checking if a parameter is iterable via this function
+
+

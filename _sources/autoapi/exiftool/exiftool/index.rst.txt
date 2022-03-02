@@ -1,0 +1,483 @@
+:py:mod:`exiftool.exiftool`
+===========================
+
+.. py:module:: exiftool.exiftool
+
+.. autoapi-nested-parse::
+
+   PyExifTool is a Python library to communicate with an instance of Phil
+   Harvey's excellent ExifTool_ command-line application.  The library
+   provides the class :py:class:`ExifTool` that runs the command-line
+   tool in batch mode and features methods to send commands to that
+   program, including methods to extract meta-information from one or
+   more image files.  Since ``exiftool`` is run in batch mode, only a
+   single instance needs to be launched and can be reused for many
+   queries.  This is much more efficient than launching a separate
+   process for every single query.
+
+   .. _ExifTool: https://exiftool.org
+
+   The source code can be checked out from the github repository with
+
+   ::
+
+           git clone git://github.com/sylikc/pyexiftool.git
+
+   Alternatively, you can download a tarball_.  There haven't been any
+   releases yet.
+
+   .. _tarball: https://github.com/sylikc/pyexiftool/tarball/master
+
+   PyExifTool is licenced under GNU GPL version 3 or later, or BSD license.
+
+   Example usage::
+
+           import exiftool
+
+           files = ["a.jpg", "b.png", "c.tif"]
+           with exiftool.ExifToolHelper() as et:
+                   metadata = et.get_metadata(files)
+           for d in metadata:
+                   print("{:20.20} {:20.20}".format(d["SourceFile"],
+                                                                                    d["EXIF:DateTimeOriginal"]))
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   exiftool.exiftool.ExifTool
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   exiftool.exiftool._read_fd_endswith
+   exiftool.exiftool._set_pdeathsig
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   exiftool.exiftool.ENCODING_UTF8
+
+
+.. py:data:: ENCODING_UTF8
+   :annotation: :str = utf-8
+
+   
+
+.. py:class:: ExifTool(executable = None, common_args = ['-G', '-n'], win_shell = False, config_file = None, encoding = None, logger=None)
+
+   Bases: :py:obj:`object`
+
+   Run the `exiftool` command-line tool and communicate with it.
+
+   Use ``common_args`` to enable/disable print conversion by specifying/omitting ``-n``, respectively.
+   This determines whether exiftool should perform print conversion,
+   which prints values in a human-readable way but
+   may be slower. If print conversion is enabled, appending ``#`` to a tag
+   name disables the print conversion for this particular tag.
+   See `Exiftool print conversion FAQ`_ for more details.
+
+   .. _Exiftool print conversion FAQ: https://exiftool.org/faq.html#Q6
+
+
+   You can pass optional arguments to the constructor:
+
+   * ``executable`` (string): file name of the *exiftool* executable.
+     The default value :py:attr:`exiftool.constants.DEFAULT_EXECUTABLE` will only work if the executable
+     is in your ``PATH``.
+     You can also specify the full path to the ``exiftool`` executable.
+     See :py:attr:`executable` property for more details.
+   * ``common_args`` (list of strings): contains additional parameters for
+     the stay-open instance of exiftool.  The default is ``-G`` and ``-n``.
+     See :py:attr:`common_args` property for more details.
+   * ``win_shell``
+
+     .. note::
+       This parameter may be deprecated in the future
+
+   * ``config_file`` (string): file path to ``-config`` parameter when
+     starting process.
+     See :py:attr:`config_file` property for more details.
+   * ``encoding`` (string): encoding to be used when communicating with
+     exiftool process.  By default, will use ``locale.getpreferredencoding()``
+     See :py:attr:`encoding` property for more details
+   * ``logger`` (object):  Set a custom logger to log status and debug messages to.
+     See :py:attr:`logger` for more details.
+
+   Some methods of this class are only available after calling
+   :py:meth:`run()`, which will actually launch the *exiftool* subprocess.  To
+   avoid leaving the subprocess running, make sure to call
+   :py:meth:`terminate()` method when finished using the instance.
+   This method will also be implicitly called when the instance is
+   garbage collected, but there are circumstance when this won't ever
+   happen, so you should not rely on the implicit process
+   termination.  Subprocesses won't be automatically terminated if
+   the parent process exits, so a leaked subprocess will stay around
+   until manually killed.
+
+   A convenient way to make sure that the subprocess is terminated is
+   to use the :py:class:`ExifTool` instance as a context manager::
+
+           with ExifTool() as et:
+                   ...
+
+   .. warning::
+           Note that options and parameters are not checked.  There is no error handling or validation of options passed to *exiftool*.
+           Nonsensical options are mostly silently ignored by exiftool, so there's not
+           much that can be done in that regard.  You should avoid passing
+           non-existent files to any of the methods, since this will lead
+           to undefined behaviour.
+
+
+   .. py:attribute:: _running
+      :annotation: :bool = False
+
+      A Boolean value indicating whether this instance is currently
+      associated with a running subprocess.
+
+
+   .. py:attribute:: logger
+      
+
+      Write-only property to set the class of logging.Logger
+
+      If this is set, then status messages will log out to the given class.
+
+      :setter: Specify an object to log to.  The class is not checked, but validation is done to ensure the object has callable methods ``info``, ``warning``, ``error``, ``critical``, ``exception``.
+
+      :raises AttributeError: If object does not contain one or more of the required methods.
+      :raises TypeError: If object has one or more non-callable methods.
+
+      :type: Object
+
+
+   .. py:method:: __del__(self)
+
+
+   .. py:method:: __enter__(self)
+
+
+   .. py:method:: __exit__(self, exc_type, exc_val, exc_tb)
+
+
+   .. py:method:: _flag_running_false(self)
+
+      private method that resets the "running" state
+      It used to be that there was only self._running to unset, but now it's a trio of variables
+
+      This method makes it less likely a maintainer will leave off a variable if other ones are added in the future
+
+
+   .. py:method:: _parse_ver(self)
+
+      private method to run exiftool -ver
+      and parse out the information
+
+
+   .. py:method:: _set_logger(self, new_logger)
+
+      set a new user-created logging.Logger object
+      can be set at any time to start logging.
+
+      Set to None at any time to stop logging
+
+
+   .. py:method:: block_size(self)
+      :property:
+
+      Block size for communicating with *exiftool* subprocess.  Used when reading from the I/O pipe.
+
+      :getter: Returns current block size
+
+      :setter: Set a new block_size.  Does basic error checking to make sure > 0.
+
+      :raises ValueError: If new block size is invalid
+
+      :type: int
+
+
+   .. py:method:: common_args(self)
+      :property:
+
+      Common Arguments executed with every command passed to *exiftool* subprocess
+
+      This is the parameter `-common_args`_ that is passed when the *exiftool* process is STARTED
+
+      Read `Phil Harvey's ExifTool documentation`_ to get further information on what options are available / how to use them.
+
+      .. _-common_args: https://exiftool.org/exiftool_pod.html#Advanced-options
+      .. _Phil Harvey's ExifTool documentation: https://exiftool.org/exiftool_pod.html
+
+      :getter: Returns current common_args list
+
+      :setter: If ``None`` is passed in, sets common_args to ``[]``.  Otherwise, sets the given list without any validation.
+
+              .. warning::
+                      No validation is done on the arguments list.  It is passed verbatim to *exiftool*.  Invalid options or combinations may result in undefined behavior.
+
+              .. note::
+                      Setting is only available when exiftool process is not running.
+
+      :raises ExifToolRunning: If attempting to set while running (:py:attr:`running` == True)
+      :raises TypeError: If setting is not a list
+
+      :type: list[str], None
+
+
+   .. py:method:: config_file(self)
+      :property:
+
+      Path to config file.
+
+      See `ExifTool documentation for -config`_ for more details.
+
+
+
+      :getter: Returns current config file path, or None if not set
+
+      :setter: File existence is checked when setting parameter
+
+              * Set to ``None`` to disable the ``-config`` parameter when starting *exiftool*
+              * Set to ``""`` has special meaning and disables loading of the default config file.  See `ExifTool documentation for -config`_ for more info.
+
+              .. note::
+                      Currently file is checked for existence when setting.  It is not checked when starting process.
+
+      :raises ExifToolRunning: If attempting to set while running (:py:attr:`running` == True)
+
+      :type: str, Path, None
+
+      .. _ExifTool documentation for -config: https://exiftool.org/exiftool_pod.html#Advanced-options
+
+
+   .. py:method:: encoding(self)
+      :property:
+
+      Encoding of Popen() communication with *exiftool* process.
+
+      :getter: Returns current encoding setting
+
+      :setter: Set a new encoding.
+
+              * If *new_encoding* is None, will detect it from ``locale.getpreferredencoding(do_setlocale=False)`` (do_setlocale is set to False as not to affect the caller).
+              * Default to ``UTF-8`` if nothing is returned by ``getpreferredencoding``
+
+              .. warning::
+                      Property setter does NOT validate the encoding for validity.  It is passed verbatim into subprocess.Popen()
+
+              .. note::
+                      Setting is only available when exiftool process is not running.
+
+      :raises ExifToolRunning: If attempting to set while running (:py:attr:`running` == True)
+
+
+
+   .. py:method:: executable(self)
+      :property:
+
+      Path to *exiftool* executable.
+
+      :getter: Returns current exiftool path
+      :setter: Specify just the executable name, or an absolute path to the executable.
+              If path given is not absolute, searches environment ``PATH``.
+
+              .. note::
+                      Setting is only available when exiftool process is not running.
+
+      :raises ExifToolRunning: If attempting to set while running (:py:attr:`running` == True)
+      :type: str, Path
+
+
+   .. py:method:: execute(self, *params)
+
+      Execute the given batch of parameters with *exiftool*.
+
+      This method accepts any number of parameters and sends them to
+      the attached ``exiftool`` subprocess.  The process must be
+      running, otherwise ``ExifToolNotRunning`` is raised.  The final
+      ``-execute`` necessary to actually run the batch is appended
+      automatically; see the documentation of :py:meth:`run()` for
+      the common options.  The ``exiftool`` output is read up to the
+      end-of-output sentinel and returned as a ``str`` decoded
+      based on the currently set :py:attr:`encoding`,
+      excluding the sentinel.
+
+      The parameters must be of type ``str``.  Use the :py:attr:`encoding` property to change the
+      encoding ``exiftool`` accepts.  For filenames, this should be the
+      system's filesystem encoding.
+
+      .. note::
+              This is the core method to interface with the ``exiftool`` subprocess.
+
+              No processing is done on the input or output.
+
+      :return:
+              * STDOUT is returned by the method call, and is also set in :py:attr:`last_stdout`
+              * STDERR is set in :py:attr:`last_stderr`
+              * Exit Status of the command is set in :py:attr:`last_status`
+
+      :raises ExifToolNotRunning: If attempting to execute when not running (:py:attr:`running` == False)
+      :raises ExifToolVersionError: If unexpected text was returned from the command while parsing out the sentinels
+
+
+   .. py:method:: execute_json(self, *params)
+
+      Execute the given batch of parameters and parse the JSON output.
+
+      This method is similar to :py:meth:`execute()`.  It
+      automatically adds the parameter ``-j`` to request JSON output
+      from ``exiftool`` and parses the output.
+
+      The return value is
+      a list of dictionaries, mapping tag names to the corresponding
+      values.  All keys are strings.
+      The values can have multiple types.  Each dictionary contains the
+      name of the file it corresponds to in the key ``"SourceFile"``.
+
+      .. note::
+              By default, the tag names include the group name in the format <group>:<tag> (if using the ``-G`` option).
+
+              You can adjust the output structure with various *exiftool* options.
+
+      The parameters to this function must be type ``str``
+
+      :return: valid JSON parsed into a Python list of dicts
+      :raises OutputEmpty: If *exiftool* did not return any STDOUT
+
+              .. note::
+                      This is not necessarily an error, setting tags can cause this behavior.  Use :py:meth:`execute()` to set tags.
+
+      :raises OutputNotJSON: If *exiftool* returned STDOUT which is invalid JSON.
+
+              .. note::
+                      This is not necessarily an error, ``-w`` can cause this behavior.  Use :py:meth:`execute()` if using the ``-w`` flag.
+
+
+   .. py:method:: last_status(self)
+      :property:
+
+      ``Exit Status Code`` for most recent result from execute()
+
+      .. note::
+              This property can be read at any time, and is not dependent on running state of ExifTool.
+
+              It is INTENTIONALLY *NOT* CLEARED on exiftool termination, to allow
+              for executing a command and terminating, but still have result available.
+
+
+   .. py:method:: last_stderr(self)
+      :property:
+
+      ``STDERR`` for most recent result from execute()
+
+      .. note::
+              This property can be read at any time, and is not dependent on running state of ExifTool.
+
+              It is INTENTIONALLY *NOT* CLEARED on exiftool termination, to allow
+              for executing a command and terminating, but still have result available.
+
+
+   .. py:method:: last_stdout(self)
+      :property:
+
+      ``STDOUT`` for most recent result from execute()
+
+      .. note::
+              This property can be read at any time, and is not dependent on running state of ExifTool.
+
+              It is INTENTIONALLY *NOT* CLEARED on exiftool termination, to allow
+              for executing a command and terminating, but still have result available.
+
+
+   .. py:method:: run(self)
+
+      Start an *exiftool* subprocess in batch mode.
+
+      This method will issue a ``UserWarning`` if the subprocess is
+      already running (:py:attr:`running` == True).  The process is started with :py:attr:`common_args` as common arguments,
+      which are automatically included in every command you run with :py:meth:`execute()`.
+
+      You can override these default arguments with the
+      ``common_args`` parameter in the constructor or setting :py:attr:`common_args` before caaling :py:meth:`run()`.
+
+      .. note::
+              If you have another executable named *exiftool* which isn't Phil Harvey's ExifTool, then you're shooting yourself in the foot as there's no error checking for that
+
+      :raises FileNotFoundError: If *exiftool* is no longer found.  Re-raised from subprocess.Popen()
+      :raises OSError: Re-raised from subprocess.Popen()
+      :raises ValueError: Re-raised from subprocess.Popen()
+      :raises subproccess.CalledProcessError: Re-raised from subprocess.Popen()
+      :raises RuntimeError: Popen() launched process but it died right away
+      :raises ExifToolVersionError: :py:attr:`exiftool.constants.EXIFTOOL_MINIMUM_VERSION` not met.  ExifTool process will be automatically terminated.
+
+
+   .. py:method:: running(self)
+      :property:
+
+      Read-only property which indicates whether the *exiftool* subprocess is running or not.
+
+      :getter: Returns current running state
+
+              .. note::
+                      This checks to make sure the process is still alive.
+
+                      If the process has died since last `running` detection, this property
+                      will detect the state change and reset the status accordingly.
+
+
+   .. py:method:: terminate(self, timeout = 30, _del = False)
+
+      Terminate the *exiftool* subprocess.
+
+      If the subprocess isn't running, this method will throw a warning, and do nothing.
+
+      .. note::
+              There is a bug in CPython 3.8+ on Windows where terminate() does not work during __del__()
+              See CPython issue `starting a thread in __del__ hangs at interpreter shutdown`_ for more info.
+
+      .. _starting a thread in __del__ hangs at interpreter shutdown: https://bugs.python.org/issue43784
+
+
+   .. py:method:: version(self)
+      :property:
+
+      Read-only property which is the string returned by ``exiftool -ver``
+
+      The *-ver* command is ran once at process startup and cached.
+
+      :getter: Returns cached output of ``exiftool -ver``
+
+      :raises ExifToolNotRunning: If attempting to read while not running (:py:attr:`running` == False)
+
+
+
+.. py:function:: _read_fd_endswith(fd, b_endswith, block_size)
+
+   read an fd and keep reading until it endswith the seq_ends
+
+   this allows a consolidated read function that is platform indepdent
+
+   if you're not careful, on windows, this will block
+
+
+.. py:function:: _set_pdeathsig(sig)
+
+   Use this method in subprocess.Popen(preexec_fn=set_pdeathsig()) to make sure,
+   the exiftool childprocess is stopped if this process dies.
+   However, this only works on linux.
+
+

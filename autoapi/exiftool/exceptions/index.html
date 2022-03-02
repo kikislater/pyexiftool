@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>exiftool.exceptions &mdash; PyExifTool 0.5.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> PyExifTool
+          </a>
+              <div class="version">
+                0.5
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../package.html">Package Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/1-exiftool.html">Class exiftool.ExifTool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/2-helper.html">Class exiftool.ExifToolHelper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/3-alpha.html">Class exiftool.ExifToolAlpha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyExifTool</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.exceptions</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/exiftool/exceptions/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-exiftool.exceptions">
+<span id="exiftool-exceptions"></span><h1><a class="reference internal" href="#module-exiftool.exceptions" title="exiftool.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.exceptions</span></code></a><a class="headerlink" href="#module-exiftool.exceptions" title="Permalink to this headline"></a></h1>
+<p>This module holds all the custom exceptions thrown by PyExifTool</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="exiftool.exceptions.ExifToolException">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolException</span></span><a class="headerlink" href="#exiftool.exceptions.ExifToolException" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Generic Base class for all ExifTool error classes</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exiftool.exceptions.ExifToolNotRunning">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolNotRunning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exceptions.ExifToolNotRunning" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ProcessStateError" title="exiftool.exceptions.ProcessStateError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessStateError</span></code></a></p>
+<p>ExifTool is not running</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exiftool.exceptions.ExifToolRunning">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolRunning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exceptions.ExifToolRunning" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ProcessStateError" title="exiftool.exceptions.ProcessStateError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessStateError</span></code></a></p>
+<p>ExifTool is already running</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exiftool.exceptions.ExifToolVersionError">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolVersionError</span></span><a class="headerlink" href="#exiftool.exceptions.ExifToolVersionError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ExifToolException" title="exiftool.exceptions.ExifToolException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolException</span></code></a></p>
+<p>Generic Error to represent some version mismatch.
+PyExifTool is coded to work with a range of exiftool versions.  If the advanced params change in functionality and break PyExifTool, this error will be thrown</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exiftool.exceptions.OutputEmpty">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">OutputEmpty</span></span><a class="headerlink" href="#exiftool.exceptions.OutputEmpty" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ExifToolException" title="exiftool.exceptions.ExifToolException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolException</span></code></a></p>
+<p>ExifTool did not return output, only thrown by execute_json()</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exiftool.exceptions.OutputNotJSON">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">OutputNotJSON</span></span><a class="headerlink" href="#exiftool.exceptions.OutputNotJSON" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ExifToolException" title="exiftool.exceptions.ExifToolException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolException</span></code></a></p>
+<p>ExifTool did not return valid JSON, only thrown by execute_json()</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exiftool.exceptions.ProcessStateError">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ProcessStateError</span></span><a class="headerlink" href="#exiftool.exceptions.ProcessStateError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ExifToolException" title="exiftool.exceptions.ExifToolException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolException</span></code></a></p>
+<p>Base class for all errors related to the invalid state of <cite>exiftool</cite> subprocess</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kevin M (sylikc).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

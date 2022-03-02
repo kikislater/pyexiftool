@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; PyExifTool 0.5.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Package Overview" href="package.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PyExifTool
+          </a>
+              <div class="version">
+                0.5
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package.html">Package Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-pyexiftool">Getting PyExifTool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pypi">PyPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#from-source">From Source</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pyexiftool-dependencies">PyExifTool Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#phil-harvey-s-exiftool">Phil Harvey’s exiftool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#windows-mac">Windows/Mac</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linux">Linux</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/1-exiftool.html">Class exiftool.ExifTool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/2-helper.html">Class exiftool.ExifToolHelper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/3-alpha.html">Class exiftool.ExifToolAlpha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyExifTool</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<section id="getting-pyexiftool">
+<h2>Getting PyExifTool<a class="headerlink" href="#getting-pyexiftool" title="Permalink to this headline"></a></h2>
+<section id="pypi">
+<h3>PyPI<a class="headerlink" href="#pypi" title="Permalink to this headline"></a></h3>
+<p>Easiest: Install a version from the official <a class="reference external" href="https://pypi.org/project/PyExifTool/">PyExifTool PyPI</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">pyexiftool</span>
+</pre></div>
+</div>
+</section>
+<section id="from-source">
+<h3>From Source<a class="headerlink" href="#from-source" title="Permalink to this headline"></a></h3>
+<p>The source code can be checked out from the github repository with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sylikc</span><span class="o">/</span><span class="n">pyexiftool</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Alternatively, you can download a <a class="reference external" href="https://github.com/sylikc/pyexiftool/tarball/master">tarball</a>.</p>
+<p>Run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span> <span class="p">[</span><span class="o">--</span><span class="n">user</span><span class="o">|--</span><span class="n">prefix</span><span class="o">=&lt;</span><span class="n">installation</span><span class="o">-</span><span class="n">prefix</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>to automatically install this module from source.</p>
+</section>
+</section>
+<section id="pyexiftool-dependencies">
+<h2>PyExifTool Dependencies<a class="headerlink" href="#pyexiftool-dependencies" title="Permalink to this headline"></a></h2>
+<section id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline"></a></h3>
+<p>PyExifTool runs on <strong>Python 3.6+</strong>.  (If you need Python 2.6 support,
+please use version v0.4.x).  PyExifTool has been tested on Windows and
+Linux, and probably also runs on other Unix-like platforms.</p>
+</section>
+<section id="phil-harvey-s-exiftool">
+<h3>Phil Harvey’s exiftool<a class="headerlink" href="#phil-harvey-s-exiftool" title="Permalink to this headline"></a></h3>
+<p>For PyExifTool to function, <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> command-line tool must exist on
+the system.  If <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> is not on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code>, you can specify the full
+pathname to it by using <code class="docutils literal notranslate"><span class="pre">ExifTool(executable=&lt;full</span> <span class="pre">path&gt;)</span></code>.</p>
+<p>PyExifTool requires a <strong>minimum version of 12.15</strong> (which was the first
+production version of exiftool featuring the options to allow exit status
+checks used in conjuction with <code class="docutils literal notranslate"><span class="pre">-echo3</span></code> and <code class="docutils literal notranslate"><span class="pre">-echo4</span></code> parameters).</p>
+<p>To check your <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exiftool</span> <span class="o">-</span><span class="n">ver</span>
+</pre></div>
+</div>
+<section id="windows-mac">
+<h4>Windows/Mac<a class="headerlink" href="#windows-mac" title="Permalink to this headline"></a></h4>
+<p>Windows/Mac users can download the latest version of exiftool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">exiftool</span><span class="o">.</span><span class="n">org</span>
+</pre></div>
+</div>
+</section>
+<section id="linux">
+<h4>Linux<a class="headerlink" href="#linux" title="Permalink to this headline"></a></h4>
+<p>Most current Linux distributions have a package which will install <code class="docutils literal notranslate"><span class="pre">exiftool</span></code>.
+Unfortunately, some do not have the minimum required version, in which case you
+will have to <a class="reference external" href="https://exiftool.org/install.html#Unix">build from source</a>.</p>
+<ul>
+<li><p>Ubuntu</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libimage</span><span class="o">-</span><span class="n">exiftool</span><span class="o">-</span><span class="n">perl</span>
+</pre></div>
+</div>
+</li>
+<li><p>CentOS/RHEL</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">perl</span><span class="o">-</span><span class="n">Image</span><span class="o">-</span><span class="n">ExifTool</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="package.html" class="btn btn-neutral float-left" title="Package Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kevin M (sylikc).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

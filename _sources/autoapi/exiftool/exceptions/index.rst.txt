@@ -1,0 +1,64 @@
+:py:mod:`exiftool.exceptions`
+=============================
+
+.. py:module:: exiftool.exceptions
+
+.. autoapi-nested-parse::
+
+   This module holds all the custom exceptions thrown by PyExifTool
+
+
+
+Module Contents
+---------------
+
+.. py:exception:: ExifToolException
+
+   Bases: :py:obj:`Exception`
+
+   Generic Base class for all ExifTool error classes
+
+
+.. py:exception:: ExifToolNotRunning(message)
+
+   Bases: :py:obj:`ProcessStateError`
+
+   ExifTool is not running
+
+
+.. py:exception:: ExifToolRunning(message)
+
+   Bases: :py:obj:`ProcessStateError`
+
+   ExifTool is already running
+
+
+.. py:exception:: ExifToolVersionError
+
+   Bases: :py:obj:`ExifToolException`
+
+   Generic Error to represent some version mismatch.
+   PyExifTool is coded to work with a range of exiftool versions.  If the advanced params change in functionality and break PyExifTool, this error will be thrown
+
+
+.. py:exception:: OutputEmpty
+
+   Bases: :py:obj:`ExifToolException`
+
+   ExifTool did not return output, only thrown by execute_json()
+
+
+.. py:exception:: OutputNotJSON
+
+   Bases: :py:obj:`ExifToolException`
+
+   ExifTool did not return valid JSON, only thrown by execute_json()
+
+
+.. py:exception:: ProcessStateError
+
+   Bases: :py:obj:`ExifToolException`
+
+   Base class for all errors related to the invalid state of `exiftool` subprocess
+
+
