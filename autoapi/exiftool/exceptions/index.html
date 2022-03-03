@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>exiftool.exceptions &mdash; PyExifTool 0.5.1 documentation</title>
+  <title>exiftool.exceptions &mdash; PyExifTool 0.5.2 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -85,6 +85,14 @@
 <em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolException</span></span><a class="headerlink" href="#exiftool.exceptions.ExifToolException" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Generic Base class for all ExifTool error classes</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="exiftool.exceptions.ExifToolExecuteError">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolExecuteError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exit_status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmd_stdout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmd_stderr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exceptions.ExifToolExecuteError" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ExifToolException" title="exiftool.exceptions.ExifToolException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolException</span></code></a></p>
+<p>ExifTool executed the command but returned a non-zero exit status</p>
+<p>mimics the signature of <code class="xref py py-class docutils literal notranslate"><span class="pre">subprocess.CalledProcessError</span></code></p>
 </dd></dl>
 
 <dl class="py exception">

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>exiftool.exiftool &mdash; PyExifTool 0.5.1 documentation</title>
+  <title>exiftool.exiftool &mdash; PyExifTool 0.5.2 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -245,7 +245,7 @@ associated with a running subprocess.</p>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>AttributeError</strong> – If object does not contain one or more of the required methods.</p></li>
-<li><p><strong>TypeError</strong> – If object has one or more non-callable methods.</p></li>
+<li><p><strong>TypeError</strong> – If object contains those attributes, but one or more are non-callable methods.</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Type</dt>
@@ -485,19 +485,31 @@ system’s filesystem encoding.</p>
 <p>No processing is done on the input or output.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>one</em><em> or </em><em>more string parameters</em>) – <p>One or more parameters to send to the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> subprocess.</p>
+<p>Typically passed in via <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists">Unpacking Argument Lists</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The parameters to this function must be type <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
 <li><p>STDOUT is returned by the method call, and is also set in <a class="reference internal" href="#exiftool.exiftool.ExifTool.last_stdout" title="exiftool.exiftool.ExifTool.last_stdout"><code class="xref py py-attr docutils literal notranslate"><span class="pre">last_stdout</span></code></a></p></li>
 <li><p>STDERR is set in <a class="reference internal" href="#exiftool.exiftool.ExifTool.last_stderr" title="exiftool.exiftool.ExifTool.last_stderr"><code class="xref py py-attr docutils literal notranslate"><span class="pre">last_stderr</span></code></a></p></li>
 <li><p>Exit Status of the command is set in <a class="reference internal" href="#exiftool.exiftool.ExifTool.last_status" title="exiftool.exiftool.ExifTool.last_status"><code class="xref py py-attr docutils literal notranslate"><span class="pre">last_status</span></code></a></p></li>
 </ul>
 </p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
 <li><p><a class="reference internal" href="../exceptions/index.html#exiftool.exceptions.ExifToolNotRunning" title="exiftool.exceptions.ExifToolNotRunning"><strong>ExifToolNotRunning</strong></a> – If attempting to execute when not running (<a class="reference internal" href="#exiftool.exiftool.ExifTool.running" title="exiftool.exiftool.ExifTool.running"><code class="xref py py-attr docutils literal notranslate"><span class="pre">running</span></code></a> == False)</p></li>
 <li><p><a class="reference internal" href="../exceptions/index.html#exiftool.exceptions.ExifToolVersionError" title="exiftool.exceptions.ExifToolVersionError"><strong>ExifToolVersionError</strong></a> – If unexpected text was returned from the command while parsing out the sentinels</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -519,13 +531,21 @@ name of the file it corresponds to in the key <code class="docutils literal notr
 <p>By default, the tag names include the group name in the format &lt;group&gt;:&lt;tag&gt; (if using the <code class="docutils literal notranslate"><span class="pre">-G</span></code> option).</p>
 <p>You can adjust the output structure with various <em>exiftool</em> options.</p>
 </div>
-<p>The parameters to this function must be type <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>valid JSON parsed into a Python list of dicts</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>one</em><em> or </em><em>more string parameters</em>) – <p>One or more parameters to send to the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> subprocess.</p>
+<p>Typically passed in via <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists">Unpacking Argument Lists</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The parameters to this function must be type <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+</div>
+</p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Valid JSON parsed into a Python list of dicts</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
 <li><p><a class="reference internal" href="../exceptions/index.html#exiftool.exceptions.OutputEmpty" title="exiftool.exceptions.OutputEmpty"><strong>OutputEmpty</strong></a> – <p>If <em>exiftool</em> did not return any STDOUT</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -539,6 +559,9 @@ name of the file it corresponds to in the key <code class="docutils literal notr
 </div>
 </p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List</p>
 </dd>
 </dl>
 </dd></dl>

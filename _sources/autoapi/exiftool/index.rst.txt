@@ -47,7 +47,7 @@ Attributes
    
 
 .. py:data:: __version__
-   :annotation: = 0.5.1
+   :annotation: = 0.5.2
 
    
 
@@ -133,7 +133,7 @@ Attributes
       :setter: Specify an object to log to.  The class is not checked, but validation is done to ensure the object has callable methods ``info``, ``warning``, ``error``, ``critical``, ``exception``.
 
       :raises AttributeError: If object does not contain one or more of the required methods.
-      :raises TypeError: If object has one or more non-callable methods.
+      :raises TypeError: If object contains those attributes, but one or more are non-callable methods.
 
       :type: Object
 
@@ -219,7 +219,6 @@ Attributes
       See `ExifTool documentation for -config`_ for more details.
 
 
-
       :getter: Returns current config file path, or None if not set
 
       :setter: File existence is checked when setting parameter
@@ -298,6 +297,16 @@ Attributes
 
               No processing is done on the input or output.
 
+      :param params: One or more parameters to send to the ``exiftool`` subprocess.
+
+              Typically passed in via `Unpacking Argument Lists`_
+
+              .. note::
+                      The parameters to this function must be type ``str``
+
+      :type params: one or more string parameters
+
+
       :return:
               * STDOUT is returned by the method call, and is also set in :py:attr:`last_stdout`
               * STDERR is set in :py:attr:`last_stderr`
@@ -305,6 +314,9 @@ Attributes
 
       :raises ExifToolNotRunning: If attempting to execute when not running (:py:attr:`running` == False)
       :raises ExifToolVersionError: If unexpected text was returned from the command while parsing out the sentinels
+
+
+      .. _Unpacking Argument Lists: https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists
 
 
    .. py:method:: execute_json(self, *params)
@@ -326,9 +338,16 @@ Attributes
 
               You can adjust the output structure with various *exiftool* options.
 
-      The parameters to this function must be type ``str``
+      :param params: One or more parameters to send to the ``exiftool`` subprocess.
 
-      :return: valid JSON parsed into a Python list of dicts
+              Typically passed in via `Unpacking Argument Lists`_
+
+              .. note::
+                      The parameters to this function must be type ``str``
+
+      :type params: one or more string parameters
+
+      :return: Valid JSON parsed into a Python list of dicts
       :raises OutputEmpty: If *exiftool* did not return any STDOUT
 
               .. note::
@@ -338,6 +357,9 @@ Attributes
 
               .. note::
                       This is not necessarily an error, ``-w`` can cause this behavior.  Use :py:meth:`execute()` if using the ``-w`` flag.
+
+
+      .. _Unpacking Argument Lists: https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists
 
 
    .. py:method:: last_status(self)
@@ -438,7 +460,7 @@ Attributes
 
 
 
-.. py:class:: ExifToolAlpha(auto_start=True, **kwargs)
+.. py:class:: ExifToolAlpha(auto_start = True, check_execute = True, **kwargs)
 
    Bases: :py:obj:`exiftool.helper.ExifToolHelper`
 
@@ -542,35 +564,8 @@ Attributes
       It can be passed into `check_ok()` and `format_error()`.
 
 
-   .. py:method:: set_tags(self, filename, tags)
 
-      Writes the values of the specified tags for the given file.
-
-      This is a convenience function derived from `set_tags_batch()`.
-      Only difference is that it takes as last arugemnt only one file name
-      as a string.
-
-
-   .. py:method:: set_tags_batch(self, filenames, tags)
-
-      Writes the values of the specified tags for the given files.
-
-      The first argument is a dictionary of tags and values.  The tag names may
-      include group names, as usual in the format <group>:<tag>.
-
-      The second argument is an iterable of file names.
-
-      The format of the return value is the same as for
-      :py:meth:`execute()`.
-
-      It can be passed into `check_ok()` and `format_error()`.
-
-      tags items can be lists, in which case, the tag will be passed
-      with each item in the list, in the order given
-
-
-
-.. py:class:: ExifToolHelper(auto_start=True, **kwargs)
+.. py:class:: ExifToolHelper(auto_start = True, check_execute = True, **kwargs)
 
    Bases: :py:obj:`exiftool.exiftool.ExifTool`
 
@@ -578,60 +573,151 @@ Attributes
 
    It keeps low-level core functionality with the base class but extends helper functions in a separate class
 
+   .. py:method:: check_execute(self)
+      :property:
+
+      Flag to enable/disable checking exit status (return code) on execute
+
+      If enabled, will raise :py:exc:`exiftool.exceptions.ExifToolExecuteError` if a non-zero exit status is returned during :py:meth:`execute()`
+
+      :getter: Returns current setting
+      :setter: Enable or Disable the check
+
+              .. note::
+                      This settings can be changed any time and will only affect subsequent calls
+
+      :type: bool
+
+
    .. py:method:: execute(self, *params)
 
-      override the execute() method
+      Override the :py:meth:`exiftool.ExifTool.execute()` method
 
       Adds logic to auto-start if not running, if auto_start == True
 
-
-   .. py:method:: get_metadata(self, files, params=None)
-
-      Return all meta-data for the given files.
-
-      Files parameter matches :py:meth:`get_tags()`
-
-      wildcard strings are accepted as it's passed straight to exiftool
-
-      The return value will have the format described in the
-      documentation of :py:meth:`get_tags()`.
+      :raises ExifToolExecuteError: If :py:attr:`check_execute` == True, and exit status was non-zero
 
 
-   .. py:method:: get_tags(self, files, tags, params=None)
+   .. py:method:: get_metadata(self, files, params = None)
+
+      Return all metadata for the given files.
+
+      :param files: Files parameter matches :py:meth:`get_tags()`
+
+      :param params: Optional parameters to send to *exiftool*
+      :type params: list or None
+
+      :return: The return value will have the format described in the documentation of :py:meth:`get_tags()`.
+
+
+   .. py:method:: get_tags(self, files, tags, params = None)
 
       Return only specified tags for the given files.
 
-      The first argument is the files to be worked on.  It can be:
+      :param files: File(s) to be worked on.
 
-      * an iterable of strings/bytes
-      * string/bytes
+              If a ``str`` is provided, it will get tags for a single file
 
-      The list is copied and any non-basestring elements are converted to str (to support PurePath and other similar objects)
+              If an interable is provided, the list is copied and any non-basestring elements are converted to str (to support ``PurePath`` and other similar objects)
 
-      Filenames are NOT checked for existence, that is left up to the caller.
-      It is passed directly to exiftool, which supports wildcards, etc.  Please refer to the exiftool documentation
+              .. warning::
+                      Currently, filenames are NOT checked for existence, that is left up to the caller.
+
+                      Wildcard strings are valid and passed verbatim to exiftool.
+
+                      However, exiftool's globbing is different than Python's globbing.  Read `ExifTool Common Mistakes - Over-use of Wildcards in File Names`_ for more info
+
+      :type files: str or list
 
 
-      The second argument is an iterable of tags.  The tag names may
-      include group names, as usual in the format <group>:<tag>.
+      :param tags: Tag(s) to read.  If tags is None, or [], method will returns all tags
 
-      If tags is None, or [], then returns all tags
+              .. note::
+                      The tag names may include group names, as usual in the format ``<group>:<tag>``.
+
+      :type tags: str, list, or None
 
 
-      The format of the return value is the same as for
-      :py:meth:`exiftool.ExifTool.execute_json()`.
+      :param params: Optional parameter(s) to send to *exiftool*
+      :type params: str, list, or None
+
+
+      :return: The format of the return value is the same as for :py:meth:`exiftool.ExifTool.execute_json()`.
+
+
+      :raises ValueError: Invalid Parameter
+      :raises TypeError: Invalid Parameter
+      :raises ExifToolExecuteError: If :py:attr:`check_execute` == True, and exit status was non-zero
+
+
+      .. _ExifTool Common Mistakes - Over-use of Wildcards in File Names: https://exiftool.org/mistakes.html#M2
+
 
 
    .. py:method:: run(self)
 
-      override the run() method
+      override the :py:meth:`exiftool.ExifTool.run()` method
 
       Adds logic to check if already running.  Will not attempt to run if already running (so no warning about 'ExifTool already running' will trigger) 
 
 
+   .. py:method:: set_tags(self, files, tags, params = None)
+
+      Writes the values of the specified tags for the given file(s).
+
+      :param files: File(s) to be worked on.
+
+              If a ``str`` is provided, it will set tags for a single file
+
+              If an interable is provided, the list is copied and any non-basestring elements are converted to str (to support ``PurePath`` and other similar objects)
+
+              .. warning::
+                      Currently, filenames are NOT checked for existence, that is left up to the caller.
+
+                      Wildcard strings are valid and passed verbatim to exiftool.
+
+                      However, exiftool's globbing is different than Python's globbing.  Read `ExifTool Common Mistakes - Over-use of Wildcards in File Names`_ for more info
+
+      :type files: str or list
+
+
+      :param tags: Tag(s) to write.
+
+              Dictionary keys = tags, values = str or list
+
+              If a value is a str, will set key=value
+              If a value is a list, will iterate over list and set each individual value to the same tag (
+
+              .. note::
+                      The tag names may include group names, as usual in the format ``<group>:<tag>``.
+
+              .. note::
+                      Value of the dict can be a list, in which case, the tag will be passed with each item in the list, in the order given
+
+                      This allows setting things like ``-Keywords=a -Keywords=b -Keywords=c`` by passing in ``tags={"Keywords": ['a', 'b', 'c']}``
+
+      :type tags: dict
+
+
+      :param params: Optional parameter(s) to send to *exiftool*
+      :type params: str, list, or None
+
+
+      :return: The format of the return value is the same as for :py:meth:`execute()`.
+
+
+      :raises ValueError: Invalid Parameter
+      :raises TypeError: Invalid Parameter
+      :raises ExifToolExecuteError: If :py:attr:`check_execute` == True, and exit status was non-zero
+
+
+      .. _ExifTool Common Mistakes - Over-use of Wildcards in File Names: https://exiftool.org/mistakes.html#M2
+
+
+
    .. py:method:: terminate(self, **opts)
 
-      override the terminate() method
+      override the :py:meth:`exiftool.ExifTool.terminate()` method
 
       Adds logic to check if not running (so no warning about 'ExifTool not running' will trigger)
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Class exiftool.ExifToolAlpha &mdash; PyExifTool 0.5.1 documentation</title>
+  <title>Class exiftool.ExifToolAlpha &mdash; PyExifTool 0.5.2 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -61,8 +61,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.get_tags_wrapper">get_tags_wrapper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.set_keywords">set_keywords</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.set_keywords_batch">set_keywords_batch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.set_tags">set_tags</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifToolAlpha.set_tags_batch">set_tags_batch</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../autoapi/index.html">API Reference</a></li>
@@ -92,9 +90,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-exiftool.ExifToolAlpha">
-<span id="class-exiftool-exiftoolalpha"></span><h1>Class exiftool.ExifToolAlpha<a class="headerlink" href="#module-exiftool.ExifToolAlpha" title="Permalink to this headline"></a></h1>
-<p>this class extends the ExifToolHelper class with alpha-quality code, which,
+  <section id="class-exiftool-exiftoolalpha">
+<h1>Class exiftool.ExifToolAlpha<a class="headerlink" href="#class-exiftool-exiftoolalpha" title="Permalink to this headline"></a></h1>
+<div class="graphviz"><img src="../_images/inheritance-2f0e59509d1dc46030b89991ec3082ecb2944569.png" alt="Inheritance diagram of exiftool.ExifToolAlpha" usemap="#inheritance45bd26d457" class="inheritance graphviz" /></div>
+<map id="inheritance45bd26d457" name="inheritance45bd26d457">
+<area shape="rect" id="node1" href="1-exiftool.html#module-exiftool.ExifTool" target="_top" title="Run the `exiftool` command&#45;line tool and communicate with it." alt="" coords="19,19,189,91"/>
+<area shape="rect" id="node3" href="2-helper.html#module-exiftool.ExifToolHelper" target="_top" title="This class extends the low&#45;level :py:class:`exiftool.ExifTool` class with &#39;wrapper&#39;/&#39;helper&#39; functionality" alt="" coords="237,19,466,91"/>
+<area shape="rect" id="node2" href="#module-exiftool.ExifToolAlpha" target="_top" title="this class extends the ExifToolHelper class with alpha&#45;quality code, which," alt="" coords="514,19,735,91"/>
+</map><span class="target" id="module-exiftool.ExifToolAlpha"></span><p>this class extends the ExifToolHelper class with alpha-quality code, which,
 may add functionality, but may introduce bugs or add in unneeded bloat which may
 be specific to niche use cases</p>
 <p>lots of these methods are from the original incarnation of pyexiftool
@@ -195,29 +198,6 @@ as a string.</p>
 <p>The format of the return value is the same as for
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code>.</p>
 <p>It can be passed into <cite>check_ok()</cite> and <cite>format_error()</cite>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.set_tags">
-<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">set_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.set_tags" title="Permalink to this definition"></a></dt>
-<dd><p>Writes the values of the specified tags for the given file.</p>
-<p>This is a convenience function derived from <cite>set_tags_batch()</cite>.
-Only difference is that it takes as last arugemnt only one file name
-as a string.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="exiftool.ExifToolAlpha.set_tags_batch">
-<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolAlpha.</span></span><span class="sig-name descname"><span class="pre">set_tags_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolAlpha.set_tags_batch" title="Permalink to this definition"></a></dt>
-<dd><p>Writes the values of the specified tags for the given files.</p>
-<p>The first argument is a dictionary of tags and values.  The tag names may
-include group names, as usual in the format &lt;group&gt;:&lt;tag&gt;.</p>
-<p>The second argument is an iterable of file names.</p>
-<p>The format of the return value is the same as for
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code>.</p>
-<p>It can be passed into <cite>check_ok()</cite> and <cite>format_error()</cite>.</p>
-<p>tags items can be lists, in which case, the tag will be passed
-with each item in the list, in the order given</p>
 </dd></dl>
 
 </section>

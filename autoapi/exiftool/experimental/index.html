@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>exiftool.experimental &mdash; PyExifTool 0.5.1 documentation</title>
+  <title>exiftool.experimental &mdash; PyExifTool 0.5.2 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -154,7 +154,7 @@ or at your discretion, use one of the more stable classes above.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="exiftool.experimental.ExifToolAlpha">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.experimental.</span></span><span class="sig-name descname"><span class="pre">ExifToolAlpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auto_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.experimental.ExifToolAlpha" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.experimental.</span></span><span class="sig-name descname"><span class="pre">ExifToolAlpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auto_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_execute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.experimental.ExifToolAlpha" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../helper/index.html#exiftool.helper.ExifToolHelper" title="exiftool.helper.ExifToolHelper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exiftool.helper.ExifToolHelper</span></code></a></p>
 <p>this class extends the ExifToolHelper class with alpha-quality code, which,
 may add functionality, but may introduce bugs or add in unneeded bloat which may
@@ -165,6 +165,14 @@ with miscellaneous added pull requests.</p>
 <p>And in some cases, there are edge cases which return unexpected results… so
 they will be placed into this class until the functionality can be standardized in a “stable” way</p>
 <p>Please issue PR to this class to add functionality, even if not tested well.  This class is for experimental code after all!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>auto_start</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>check_execute</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="exiftool.experimental.ExifToolAlpha._check_sanity_of_result">
 <em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">_check_sanity_of_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.experimental.ExifToolAlpha._check_sanity_of_result" title="Permalink to this definition"></a></dt>
@@ -264,29 +272,6 @@ as a string.</p>
 <p>The format of the return value is the same as for
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code>.</p>
 <p>It can be passed into <cite>check_ok()</cite> and <cite>format_error()</cite>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="exiftool.experimental.ExifToolAlpha.set_tags">
-<span class="sig-name descname"><span class="pre">set_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.experimental.ExifToolAlpha.set_tags" title="Permalink to this definition"></a></dt>
-<dd><p>Writes the values of the specified tags for the given file.</p>
-<p>This is a convenience function derived from <cite>set_tags_batch()</cite>.
-Only difference is that it takes as last arugemnt only one file name
-as a string.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="exiftool.experimental.ExifToolAlpha.set_tags_batch">
-<span class="sig-name descname"><span class="pre">set_tags_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.experimental.ExifToolAlpha.set_tags_batch" title="Permalink to this definition"></a></dt>
-<dd><p>Writes the values of the specified tags for the given files.</p>
-<p>The first argument is a dictionary of tags and values.  The tag names may
-include group names, as usual in the format &lt;group&gt;:&lt;tag&gt;.</p>
-<p>The second argument is an iterable of file names.</p>
-<p>The format of the return value is the same as for
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code>.</p>
-<p>It can be passed into <cite>check_ok()</cite> and <cite>format_error()</cite>.</p>
-<p>tags items can be lists, in which case, the tag will be passed
-with each item in the list, in the order given</p>
 </dd></dl>
 
 </dd></dl>

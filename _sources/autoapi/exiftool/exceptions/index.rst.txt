@@ -19,6 +19,15 @@ Module Contents
    Generic Base class for all ExifTool error classes
 
 
+.. py:exception:: ExifToolExecuteError(exit_status, cmd_stdout, cmd_stderr, params)
+
+   Bases: :py:obj:`ExifToolException`
+
+   ExifTool executed the command but returned a non-zero exit status
+
+   mimics the signature of :py:class:`subprocess.CalledProcessError`
+
+
 .. py:exception:: ExifToolNotRunning(message)
 
    Bases: :py:obj:`ProcessStateError`

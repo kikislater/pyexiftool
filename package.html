@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Package Overview &mdash; PyExifTool 0.5.1 documentation</title>
+  <title>Package Overview &mdash; PyExifTool 0.5.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -84,15 +84,16 @@
              
   <section id="package-overview">
 <h1>Package Overview<a class="headerlink" href="#package-overview" title="Permalink to this headline"></a></h1>
+<p>All classes live under the PyExifTool library namespace: <code class="docutils literal notranslate"><span class="pre">exiftool</span></code></p>
 <section id="design">
 <h2>Design<a class="headerlink" href="#design" title="Permalink to this headline"></a></h2>
 <p>PyExifTool was designed with flexibility and extensibility in mind.  The library consists of a few classes, each with increasingly more features.</p>
 <p>The base <code class="docutils literal notranslate"><span class="pre">ExifTool</span></code> class contains the core functionality exposed in the most rudimentary way, and each successive class inherits and adds functionality.</p>
-<div class="graphviz"><img src="_images/inheritance-b79239110014d6ea98b46176f462dc4cd7d8e75f.png" alt="Inheritance diagram of exiftool.ExifToolAlpha" usemap="#inheritance45bd26d457" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="_images/inheritance-070563647c611f7307c6d9ee52f5914ffe9664a8.png" alt="Inheritance diagram of exiftool.ExifToolAlpha" usemap="#inheritance45bd26d457" class="inheritance graphviz" /></div>
 <map id="inheritance45bd26d457" name="inheritance45bd26d457">
-<area shape="rect" id="node1" href="reference/1-exiftool.html#module-exiftool.ExifTool" target="_top" title="Run the `exiftool` command&#45;line tool and communicate with it." alt="" coords="5,5,125,31"/>
-<area shape="rect" id="node3" href="reference/2-helper.html#module-exiftool.ExifToolHelper" target="_top" title="This class extends the low&#45;level :py:class:`exiftool.ExifTool` class with &#39;wrapper&#39;/&#39;helper&#39; functionality" alt="" coords="173,5,336,31"/>
-<area shape="rect" id="node2" href="reference/3-alpha.html#module-exiftool.ExifToolAlpha" target="_top" title="this class extends the ExifToolHelper class with alpha&#45;quality code, which," alt="" coords="384,5,540,31"/>
+<area shape="rect" id="node1" href="reference/1-exiftool.html#module-exiftool.ExifTool" target="_top" title="Run the `exiftool` command&#45;line tool and communicate with it." alt="" coords="19,19,189,91"/>
+<area shape="rect" id="node3" href="reference/2-helper.html#module-exiftool.ExifToolHelper" target="_top" title="This class extends the low&#45;level :py:class:`exiftool.ExifTool` class with &#39;wrapper&#39;/&#39;helper&#39; functionality" alt="" coords="237,19,466,91"/>
+<area shape="rect" id="node2" href="reference/3-alpha.html#module-exiftool.ExifToolAlpha" target="_top" title="this class extends the ExifToolHelper class with alpha&#45;quality code, which," alt="" coords="514,19,735,91"/>
 </map><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">exiftool.ExifTool</span></code> is the base class with core logic to interface with PH’s ExifTool process.
 It contains only the core features with no extra fluff.
@@ -130,16 +131,17 @@ stackoverflow question <a class="reference external" href="https://stackoverflow
 Sven refined the code, added tests, documentation, and a slew of improvements.
 While PyExifTool gained popularity, Sven <a class="reference external" href="https://github.com/smarnach/pyexiftool/pull/31#issuecomment-569238073">never intended to maintain it</a> as
 an active project.  The <a class="reference external" href="https://github.com/smarnach/pyexiftool">original repository</a> was last updated in 2014.</p>
-<p>In early 2019, <a class="reference external" href="https://github.com/RootLUG">Martin Čarnogurský</a> created a <a class="reference external" href="https://pypi.org/project/PyExifTool/0.1.1/#history">PyPI release</a> from the
-2014 code.  Coincidentally in mid 2019, <a class="reference external" href="https://github.com/sylikc">Kevin M (sylikc)</a> forked the original
-repository and started merging PR and issues which were reported on Sven’s
-issues/PR page.</p>
+<p>Over the years, numerous issues were filed and several PRs were opened on the
+stagnant repository.  In early 2019, <a class="reference external" href="https://github.com/RootLUG">Martin Čarnogurský</a> created a
+<a class="reference external" href="https://pypi.org/project/PyExifTool/0.1.1/#history">PyPI release</a> from the 2014 code with some minor updates.  Coincidentally in
+mid 2019, <a class="reference external" href="https://github.com/sylikc">Kevin M (sylikc)</a> forked the original repository and started merging
+the PR and issues which were reported on Sven’s issues/PR page.</p>
 <p>In late 2019 and early 2020 there was a discussion started to
 <a class="reference external" href="https://github.com/smarnach/pyexiftool/pull/31">Provide visibility for an active fork</a>.  There was a conversation to
 transfer ownership of the original repository, have a coordinated plan to
 communicate to PyExifTool users, amongst other things, but it never materialized.</p>
-<p>Kevin M (sylikc) made the first release to PyPI repository in early 2021.
-At the same time, discussions were starting revolving around
+<p>Kevin M (sylikc) made the first release to the PyPI repository in early 2021.
+At the same time, discussions were started, revolving around
 <a class="reference external" href="https://github.com/sylikc/pyexiftool/discussions/9">Deprecating Python 2.x compatibility</a> and <a class="reference external" href="https://github.com/sylikc/pyexiftool/discussions/10">refactoring the code and classes</a>.</p>
 <p>The latest version is the result of all of those discussions, designs,
 and development.  Special thanks to the community contributions, especially
