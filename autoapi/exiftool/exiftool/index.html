@@ -18,7 +18,9 @@
         <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="exiftool.experimental" href="../experimental/index.html" />
+    <link rel="prev" title="exiftool.exceptions" href="../exceptions/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,7 +42,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../package.html">Package Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
@@ -48,7 +50,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/1-exiftool.html">Class exiftool.ExifTool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/2-helper.html">Class exiftool.ExifToolHelper</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/3-alpha.html">Class exiftool.ExifToolAlpha</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../constants/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.constants</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../exceptions/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.exceptions</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.exiftool</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../experimental/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.experimental</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../helper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.helper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -65,6 +81,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">API Reference</a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool</span></code></a> &raquo;</li>
       <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.exiftool</span></code></li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/autoapi/exiftool/exiftool/index.rst.txt" rel="nofollow"> View page source</a>
@@ -77,32 +95,10 @@
              
   <section id="module-exiftool.exiftool">
 <span id="exiftool-exiftool"></span><h1><a class="reference internal" href="#module-exiftool.exiftool" title="exiftool.exiftool"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.exiftool</span></code></a><a class="headerlink" href="#module-exiftool.exiftool" title="Permalink to this headline"></a></h1>
-<p>PyExifTool is a Python library to communicate with an instance of Phil
-Harvey’s excellent <a class="reference external" href="https://exiftool.org">ExifTool</a> command-line application.  The library
-provides the class <a class="reference internal" href="#exiftool.exiftool.ExifTool" title="exiftool.exiftool.ExifTool"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExifTool</span></code></a> that runs the command-line
-tool in batch mode and features methods to send commands to that
-program, including methods to extract meta-information from one or
-more image files.  Since <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> is run in batch mode, only a
-single instance needs to be launched and can be reused for many
-queries.  This is much more efficient than launching a separate
-process for every single query.</p>
-<p>The source code can be checked out from the github repository with</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sylikc</span><span class="o">/</span><span class="n">pyexiftool</span><span class="o">.</span><span class="n">git</span>
-</pre></div>
-</div>
-<p>Alternatively, you can download a <a class="reference external" href="https://github.com/sylikc/pyexiftool/tarball/master">tarball</a>.  There haven’t been any
-releases yet.</p>
-<p>PyExifTool is licenced under GNU GPL version 3 or later, or BSD license.</p>
-<p>Example usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">exiftool</span>
-
-<span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;b.png&quot;</span><span class="p">,</span> <span class="s2">&quot;c.tif&quot;</span><span class="p">]</span>
-<span class="k">with</span> <span class="n">exiftool</span><span class="o">.</span><span class="n">ExifToolHelper</span><span class="p">()</span> <span class="k">as</span> <span class="n">et</span><span class="p">:</span>
-        <span class="n">metadata</span> <span class="o">=</span> <span class="n">et</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">metadata</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:20.20}</span><span class="s2"> </span><span class="si">{:20.20}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;SourceFile&quot;</span><span class="p">],</span>
-                                                                         <span class="n">d</span><span class="p">[</span><span class="s2">&quot;EXIF:DateTimeOriginal&quot;</span><span class="p">]))</span>
-</pre></div>
+<p>This submodule contains the core <code class="docutils literal notranslate"><span class="pre">ExifTool</span></code> class for PyExifTool</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.helper.ExifTool</span></code> class of this submodule is available in the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> namespace as <a class="reference internal" href="../../../reference/1-exiftool.html#module-exiftool.ExifTool" title="exiftool.ExifTool"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifTool</span></code></a></p>
 </div>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
@@ -116,23 +112,6 @@ releases yet.</p>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#exiftool.exiftool.ExifTool" title="exiftool.exiftool.ExifTool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifTool</span></code></a></p></td>
 <td><p>Run the <cite>exiftool</cite> command-line tool and communicate with it.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="functions">
-<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#exiftool.exiftool._read_fd_endswith" title="exiftool.exiftool._read_fd_endswith"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_read_fd_endswith</span></code></a>(fd, b_endswith, block_size)</p></td>
-<td><p>read an fd and keep reading until it endswith the seq_ends</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#exiftool.exiftool._set_pdeathsig" title="exiftool.exiftool._set_pdeathsig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_set_pdeathsig</span></code></a>(sig)</p></td>
-<td><p>Use this method in subprocess.Popen(preexec_fn=set_pdeathsig()) to make sure,</p></td>
 </tr>
 </tbody>
 </table>
@@ -227,13 +206,6 @@ to undefined behaviour.</p>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="exiftool.exiftool.ExifTool._running">
-<span class="sig-name descname"><span class="pre">_running</span></span><em class="property"> <span class="pre">:bool</span> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#exiftool.exiftool.ExifTool._running" title="Permalink to this definition"></a></dt>
-<dd><p>A Boolean value indicating whether this instance is currently
-associated with a running subprocess.</p>
-</dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="exiftool.exiftool.ExifTool.logger">
 <span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#exiftool.exiftool.ExifTool.logger" title="Permalink to this definition"></a></dt>
 <dd><p>Write-only property to set the class of logging.Logger</p>
@@ -273,39 +245,6 @@ associated with a running subprocess.</p>
 <dt class="sig sig-object py" id="exiftool.exiftool.ExifTool.__exit__">
 <span class="sig-name descname"><span class="pre">__exit__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_tb</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exiftool.ExifTool.__exit__" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="exiftool.exiftool.ExifTool._flag_running_false">
-<span class="sig-name descname"><span class="pre">_flag_running_false</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exiftool.ExifTool._flag_running_false" title="Permalink to this definition"></a></dt>
-<dd><p>private method that resets the “running” state
-It used to be that there was only self._running to unset, but now it’s a trio of variables</p>
-<p>This method makes it less likely a maintainer will leave off a variable if other ones are added in the future</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="exiftool.exiftool.ExifTool._parse_ver">
-<span class="sig-name descname"><span class="pre">_parse_ver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exiftool.ExifTool._parse_ver" title="Permalink to this definition"></a></dt>
-<dd><p>private method to run exiftool -ver
-and parse out the information</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="exiftool.exiftool.ExifTool._set_logger">
-<span class="sig-name descname"><span class="pre">_set_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_logger</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exiftool.ExifTool._set_logger" title="Permalink to this definition"></a></dt>
-<dd><p>set a new user-created logging.Logger object
-can be set at any time to start logging.</p>
-<p>Set to None at any time to stop logging</p>
-<dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
@@ -710,32 +649,6 @@ See CPython issue <a class="reference external" href="https://bugs.python.org/is
 
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="exiftool.exiftool._read_fd_endswith">
-<span class="sig-prename descclassname"><span class="pre">exiftool.exiftool.</span></span><span class="sig-name descname"><span class="pre">_read_fd_endswith</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_endswith</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exiftool._read_fd_endswith" title="Permalink to this definition"></a></dt>
-<dd><p>read an fd and keep reading until it endswith the seq_ends</p>
-<p>this allows a consolidated read function that is platform indepdent</p>
-<p>if you’re not careful, on windows, this will block</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>block_size</strong> (<em>int</em>) – </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="exiftool.exiftool._set_pdeathsig">
-<span class="sig-prename descclassname"><span class="pre">exiftool.exiftool.</span></span><span class="sig-name descname"><span class="pre">_set_pdeathsig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exiftool._set_pdeathsig" title="Permalink to this definition"></a></dt>
-<dd><p>Use this method in subprocess.Popen(preexec_fn=set_pdeathsig()) to make sure,
-the exiftool childprocess is stopped if this process dies.
-However, this only works on linux.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Optional[collections.abc.Callable]</p>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 </section>
 </section>
@@ -743,7 +656,10 @@ However, this only works on linux.</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../exceptions/index.html" class="btn btn-neutral float-left" title="exiftool.exceptions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../experimental/index.html" class="btn btn-neutral float-right" title="exiftool.experimental" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

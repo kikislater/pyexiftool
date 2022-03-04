@@ -18,7 +18,9 @@
         <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="exiftool.exiftool" href="../exiftool/index.html" />
+    <link rel="prev" title="exiftool.constants" href="../constants/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,7 +42,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../package.html">Package Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
@@ -48,7 +50,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/1-exiftool.html">Class exiftool.ExifTool</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/2-helper.html">Class exiftool.ExifToolHelper</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reference/3-alpha.html">Class exiftool.ExifToolAlpha</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool</span></code></a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../constants/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.constants</span></code></a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.exceptions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../exiftool/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.exiftool</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../experimental/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.experimental</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../helper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.helper</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -65,6 +81,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">API Reference</a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool</span></code></a> &raquo;</li>
       <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.exceptions</span></code></li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/autoapi/exiftool/exceptions/index.rst.txt" rel="nofollow"> View page source</a>
@@ -84,36 +102,71 @@
 <dt class="sig sig-object py" id="exiftool.exceptions.ExifToolException">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolException</span></span><a class="headerlink" href="#exiftool.exceptions.ExifToolException" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>Generic Base class for all ExifTool error classes</p>
+<div class="graphviz"><img src="../../../_images/inheritance-b06fba441d62f1bf2a1680703aba250b10726abb.png" alt="Inheritance diagram of exiftool.exceptions.ExifToolException" usemap="#inheritancee25896b7ac" class="inheritance graphviz" /></div>
+<map id="inheritancee25896b7ac" name="inheritancee25896b7ac">
+<area shape="rect" id="node1" href="#exiftool.exceptions.ExifToolException" target="_top" title="Generic Base class for all ExifTool error classes" alt="" coords="19,19,205,91"/>
+</map><p>Generic Base class for all ExifTool error classes</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="exiftool.exceptions.ExifToolExecuteError">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolExecuteError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exit_status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmd_stdout</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmd_stderr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exceptions.ExifToolExecuteError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ExifToolException" title="exiftool.exceptions.ExifToolException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolException</span></code></a></p>
-<p>ExifTool executed the command but returned a non-zero exit status</p>
-<p>mimics the signature of <code class="xref py py-class docutils literal notranslate"><span class="pre">subprocess.CalledProcessError</span></code></p>
+<div class="graphviz"><img src="../../../_images/inheritance-2c287a7262337aff818c533270e38cbabf4503b1.png" alt="Inheritance diagram of exiftool.exceptions.ExifToolExecuteError" usemap="#inheritancea7a132d5c3" class="inheritance graphviz" /></div>
+<map id="inheritancea7a132d5c3" name="inheritancea7a132d5c3">
+<area shape="rect" id="node1" href="#exiftool.exceptions.ExifToolException" target="_top" title="Generic Base class for all ExifTool error classes" alt="" coords="19,19,205,91"/>
+<area shape="rect" id="node2" href="#exiftool.exceptions.ExifToolExecuteError" target="_top" title="ExifTool executed the command but returned a non&#45;zero exit status" alt="" coords="253,19,469,91"/>
+</map><p>ExifTool executed the command but returned a non-zero exit status</p>
+<p>(mimics the signature of <code class="xref py py-class docutils literal notranslate"><span class="pre">subprocess.CalledProcessError</span></code>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attribute returncode</dt>
+<dd class="field-odd"><p>Exit Status (Return code) of the <code class="docutils literal notranslate"><span class="pre">execute()</span></code> command which raised the error</p>
+</dd>
+<dt class="field-even">Attribute cmd</dt>
+<dd class="field-even"><p>Parameters sent to <em>exiftool</em> which raised the error</p>
+</dd>
+<dt class="field-odd">Attribute stdout</dt>
+<dd class="field-odd"><p>STDOUT stream returned by the command which raised the error</p>
+</dd>
+<dt class="field-even">Attribute stderr</dt>
+<dd class="field-even"><p>STDERR stream returned by the command which raised the error</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="exiftool.exceptions.ExifToolNotRunning">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolNotRunning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exceptions.ExifToolNotRunning" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ProcessStateError" title="exiftool.exceptions.ProcessStateError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessStateError</span></code></a></p>
-<p>ExifTool is not running</p>
+<div class="graphviz"><img src="../../../_images/inheritance-693ea0f1828f1b2f2e7a300c3725c52941de8b83.png" alt="Inheritance diagram of exiftool.exceptions.ExifToolNotRunning" usemap="#inheritance4b6f68da5c" class="inheritance graphviz" /></div>
+<map id="inheritance4b6f68da5c" name="inheritance4b6f68da5c">
+<area shape="rect" id="node1" href="#exiftool.exceptions.ExifToolException" target="_top" title="Generic Base class for all ExifTool error classes" alt="" coords="19,19,205,91"/>
+<area shape="rect" id="node3" href="#exiftool.exceptions.ProcessStateError" target="_top" title="Base class for all errors related to the invalid state of `exiftool` subprocess" alt="" coords="253,19,441,91"/>
+<area shape="rect" id="node2" href="#exiftool.exceptions.ExifToolNotRunning" target="_top" title="ExifTool is not running" alt="" coords="489,19,694,91"/>
+</map><p>ExifTool is not running</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="exiftool.exceptions.ExifToolRunning">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolRunning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exceptions.ExifToolRunning" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ProcessStateError" title="exiftool.exceptions.ProcessStateError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessStateError</span></code></a></p>
-<p>ExifTool is already running</p>
+<div class="graphviz"><img src="../../../_images/inheritance-a3f8fc8166e2344c582a9cc87a19b37bbf29240e.png" alt="Inheritance diagram of exiftool.exceptions.ExifToolRunning" usemap="#inheritancea1ef93b347" class="inheritance graphviz" /></div>
+<map id="inheritancea1ef93b347" name="inheritancea1ef93b347">
+<area shape="rect" id="node1" href="#exiftool.exceptions.ExifToolException" target="_top" title="Generic Base class for all ExifTool error classes" alt="" coords="19,19,205,91"/>
+<area shape="rect" id="node3" href="#exiftool.exceptions.ProcessStateError" target="_top" title="Base class for all errors related to the invalid state of `exiftool` subprocess" alt="" coords="253,19,441,91"/>
+<area shape="rect" id="node2" href="#exiftool.exceptions.ExifToolRunning" target="_top" title="ExifTool is already running" alt="" coords="489,19,661,91"/>
+</map><p>ExifTool is already running</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="exiftool.exceptions.ExifToolVersionError">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ExifToolVersionError</span></span><a class="headerlink" href="#exiftool.exceptions.ExifToolVersionError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ExifToolException" title="exiftool.exceptions.ExifToolException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolException</span></code></a></p>
-<p>Generic Error to represent some version mismatch.
+<div class="graphviz"><img src="../../../_images/inheritance-9e175772cf6591b0cdb43756079edbda55103ba2.png" alt="Inheritance diagram of exiftool.exceptions.ExifToolVersionError" usemap="#inheritance36e141d5a4" class="inheritance graphviz" /></div>
+<map id="inheritance36e141d5a4" name="inheritance36e141d5a4">
+<area shape="rect" id="node1" href="#exiftool.exceptions.ExifToolException" target="_top" title="Generic Base class for all ExifTool error classes" alt="" coords="19,19,205,91"/>
+<area shape="rect" id="node2" href="#exiftool.exceptions.ExifToolVersionError" target="_top" title="Generic Error to represent some version mismatch." alt="" coords="253,19,463,91"/>
+</map><p>Generic Error to represent some version mismatch.
 PyExifTool is coded to work with a range of exiftool versions.  If the advanced params change in functionality and break PyExifTool, this error will be thrown</p>
 </dd></dl>
 
@@ -121,21 +174,33 @@ PyExifTool is coded to work with a range of exiftool versions.  If the advanced 
 <dt class="sig sig-object py" id="exiftool.exceptions.OutputEmpty">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">OutputEmpty</span></span><a class="headerlink" href="#exiftool.exceptions.OutputEmpty" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ExifToolException" title="exiftool.exceptions.ExifToolException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolException</span></code></a></p>
-<p>ExifTool did not return output, only thrown by execute_json()</p>
+<div class="graphviz"><img src="../../../_images/inheritance-4fea503634e1a9390ce405804f46094b51f44eff.png" alt="Inheritance diagram of exiftool.exceptions.OutputEmpty" usemap="#inheritance85b4c23a42" class="inheritance graphviz" /></div>
+<map id="inheritance85b4c23a42" name="inheritance85b4c23a42">
+<area shape="rect" id="node1" href="#exiftool.exceptions.ExifToolException" target="_top" title="Generic Base class for all ExifTool error classes" alt="" coords="19,19,205,91"/>
+<area shape="rect" id="node2" href="#exiftool.exceptions.OutputEmpty" target="_top" title="ExifTool did not return output, only thrown by execute_json()" alt="" coords="253,19,399,91"/>
+</map><p>ExifTool did not return output, only thrown by execute_json()</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="exiftool.exceptions.OutputNotJSON">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">OutputNotJSON</span></span><a class="headerlink" href="#exiftool.exceptions.OutputNotJSON" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ExifToolException" title="exiftool.exceptions.ExifToolException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolException</span></code></a></p>
-<p>ExifTool did not return valid JSON, only thrown by execute_json()</p>
+<div class="graphviz"><img src="../../../_images/inheritance-e82b5dc10add2ba062dfbe54ffc9059592ad26ac.png" alt="Inheritance diagram of exiftool.exceptions.OutputNotJSON" usemap="#inheritanced43917d786" class="inheritance graphviz" /></div>
+<map id="inheritanced43917d786" name="inheritanced43917d786">
+<area shape="rect" id="node1" href="#exiftool.exceptions.ExifToolException" target="_top" title="Generic Base class for all ExifTool error classes" alt="" coords="19,19,205,91"/>
+<area shape="rect" id="node2" href="#exiftool.exceptions.OutputNotJSON" target="_top" title="ExifTool did not return valid JSON, only thrown by execute_json()" alt="" coords="253,19,421,91"/>
+</map><p>ExifTool did not return valid JSON, only thrown by execute_json()</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="exiftool.exceptions.ProcessStateError">
 <em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.exceptions.</span></span><span class="sig-name descname"><span class="pre">ProcessStateError</span></span><a class="headerlink" href="#exiftool.exceptions.ProcessStateError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#exiftool.exceptions.ExifToolException" title="exiftool.exceptions.ExifToolException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolException</span></code></a></p>
-<p>Base class for all errors related to the invalid state of <cite>exiftool</cite> subprocess</p>
+<div class="graphviz"><img src="../../../_images/inheritance-212dd07b46ca468e06733d709d14ce593631f6ee.png" alt="Inheritance diagram of exiftool.exceptions.ProcessStateError" usemap="#inheritance3257cb6059" class="inheritance graphviz" /></div>
+<map id="inheritance3257cb6059" name="inheritance3257cb6059">
+<area shape="rect" id="node1" href="#exiftool.exceptions.ExifToolException" target="_top" title="Generic Base class for all ExifTool error classes" alt="" coords="19,19,205,91"/>
+<area shape="rect" id="node2" href="#exiftool.exceptions.ProcessStateError" target="_top" title="Base class for all errors related to the invalid state of `exiftool` subprocess" alt="" coords="253,19,441,91"/>
+</map><p>Base class for all errors related to the invalid state of <cite>exiftool</cite> subprocess</p>
 </dd></dl>
 
 </section>
@@ -144,7 +209,10 @@ PyExifTool is coded to work with a range of exiftool versions.  If the advanced 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../constants/index.html" class="btn btn-neutral float-left" title="exiftool.constants" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../exiftool/index.html" class="btn btn-neutral float-right" title="exiftool.exiftool" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

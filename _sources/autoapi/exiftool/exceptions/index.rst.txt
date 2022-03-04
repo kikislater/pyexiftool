@@ -16,6 +16,9 @@ Module Contents
 
    Bases: :py:obj:`Exception`
 
+   .. autoapi-inheritance-diagram:: exiftool.exceptions.ExifToolException
+      :parts: 1
+
    Generic Base class for all ExifTool error classes
 
 
@@ -23,14 +26,25 @@ Module Contents
 
    Bases: :py:obj:`ExifToolException`
 
+   .. autoapi-inheritance-diagram:: exiftool.exceptions.ExifToolExecuteError
+      :parts: 1
+
    ExifTool executed the command but returned a non-zero exit status
 
-   mimics the signature of :py:class:`subprocess.CalledProcessError`
+   (mimics the signature of :py:class:`subprocess.CalledProcessError`)
+
+   :attribute returncode: Exit Status (Return code) of the ``execute()`` command which raised the error
+   :attribute cmd: Parameters sent to *exiftool* which raised the error
+   :attribute stdout: STDOUT stream returned by the command which raised the error
+   :attribute stderr: STDERR stream returned by the command which raised the error
 
 
 .. py:exception:: ExifToolNotRunning(message)
 
    Bases: :py:obj:`ProcessStateError`
+
+   .. autoapi-inheritance-diagram:: exiftool.exceptions.ExifToolNotRunning
+      :parts: 1
 
    ExifTool is not running
 
@@ -39,12 +53,18 @@ Module Contents
 
    Bases: :py:obj:`ProcessStateError`
 
+   .. autoapi-inheritance-diagram:: exiftool.exceptions.ExifToolRunning
+      :parts: 1
+
    ExifTool is already running
 
 
 .. py:exception:: ExifToolVersionError
 
    Bases: :py:obj:`ExifToolException`
+
+   .. autoapi-inheritance-diagram:: exiftool.exceptions.ExifToolVersionError
+      :parts: 1
 
    Generic Error to represent some version mismatch.
    PyExifTool is coded to work with a range of exiftool versions.  If the advanced params change in functionality and break PyExifTool, this error will be thrown
@@ -54,6 +74,9 @@ Module Contents
 
    Bases: :py:obj:`ExifToolException`
 
+   .. autoapi-inheritance-diagram:: exiftool.exceptions.OutputEmpty
+      :parts: 1
+
    ExifTool did not return output, only thrown by execute_json()
 
 
@@ -61,12 +84,18 @@ Module Contents
 
    Bases: :py:obj:`ExifToolException`
 
+   .. autoapi-inheritance-diagram:: exiftool.exceptions.OutputNotJSON
+      :parts: 1
+
    ExifTool did not return valid JSON, only thrown by execute_json()
 
 
 .. py:exception:: ProcessStateError
 
    Bases: :py:obj:`ExifToolException`
+
+   .. autoapi-inheritance-diagram:: exiftool.exceptions.ProcessStateError
+      :parts: 1
 
    Base class for all errors related to the invalid state of `exiftool` subprocess
 

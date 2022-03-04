@@ -117,6 +117,12 @@
 <em class="property"><span class="pre">property</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolHelper.</span></span><span class="sig-name descname"><span class="pre">check_execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolHelper.check_execute" title="Permalink to this definition"></a></dt>
 <dd><p>Flag to enable/disable checking exit status (return code) on execute</p>
 <p>If enabled, will raise <a class="reference internal" href="../autoapi/exiftool/exceptions/index.html#exiftool.exceptions.ExifToolExecuteError" title="exiftool.exceptions.ExifToolExecuteError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">exiftool.exceptions.ExifToolExecuteError</span></code></a> if a non-zero exit status is returned during <a class="reference internal" href="#exiftool.ExifToolHelper.execute" title="exiftool.ExifToolHelper.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>While this property is provided to give callers an option to enable/disable error checking, it is generally <strong>NOT</strong> recommended to disable <code class="docutils literal notranslate"><span class="pre">check_execute</span></code>.</p>
+<p><strong>If disabled, exiftool will fail silently, and hard-to-catch bugs may arise.</strong></p>
+<p>That said, there may be some use cases where continue-on-error behavior is desired.</p>
+</div>
 <dl class="field-list">
 <dt class="field-odd">Getter</dt>
 <dd class="field-odd"><p>Returns current setting</p>

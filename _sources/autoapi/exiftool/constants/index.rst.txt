@@ -60,7 +60,7 @@ Module Contents
 .. py:data:: PR_SET_PDEATHSIG
    :annotation: :int = 1
 
-   taken from linux/prctl.h
+   Extracted from linux/prctl.h
 
    Allows a kill signal to be sent to child processes when the parent unexpectedly dies
 

@@ -1,0 +1,4 @@
+<map id="inheritanced43917d786" name="inheritanced43917d786">
+<area shape="rect" id="node1" href="#exiftool.exceptions.ExifToolException" target="_top" title="Generic Base class for all ExifTool error classes" alt="" coords="19,19,205,91"/>
+<area shape="rect" id="node2" href="#exiftool.exceptions.OutputNotJSON" target="_top" title="ExifTool did not return valid JSON, only thrown by execute_json()" alt="" coords="253,19,421,91"/>
+</map>
