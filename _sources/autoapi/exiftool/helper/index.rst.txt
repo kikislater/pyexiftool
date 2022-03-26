@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This contains a helper class, which makes it easier to use the low-level ExifTool class
+   This submodule contains the ``ExifToolHelper`` class, which makes the core ``ExifTool`` class easier, and safer to use.
 
    .. note::
            :py:class:`exiftool.helper.ExifToolHelper` class of this submodule is available in the ``exiftool`` namespace as :py:class:`exiftool.ExifToolHelper`
@@ -38,7 +38,7 @@ Attributes
 
    
 
-.. py:class:: ExifToolHelper(auto_start = True, check_execute = True, **kwargs)
+.. py:class:: ExifToolHelper(auto_start = True, check_execute = True, check_tag_names = True, **kwargs)
 
    Bases: :py:obj:`exiftool.exiftool.ExifTool`
 
@@ -48,6 +48,20 @@ Attributes
    This class extends the low-level :py:class:`exiftool.ExifTool` class with 'wrapper'/'helper' functionality
 
    It keeps low-level core functionality with the base class but extends helper functions in a separate class
+
+   :param bool auto_start: Will automatically start the exiftool process on first command run, defaults to True
+   :param bool check_execute: Will check the exit status (return code) of all commands.  This catches some invalid commands passed to exiftool subprocess, defaults to True.  See :py:attr:`check_execute` for more info.
+   :param bool check_tag_names: Will check the tag names provided to methods which work directly with tag names.  This catches unintended uses and bugs, default to True.  See :py:attr:`check_tag_names` for more info.
+
+   :param kwargs: All other parameters are passed directly to the super-class constructor: :py:meth:`exiftool.ExifTool.__init__()`
+
+   .. py:method:: auto_start(self)
+      :property:
+
+      Read-only property.  Gets the current setting passed into the constructor as to whether auto_start is enabled or not.
+
+      (There's really no point to having this a read-write property, but allowing a read can be helpful at runtime to detect expected behavior.)
+
 
    .. py:method:: check_execute(self)
       :property:
@@ -61,7 +75,7 @@ Attributes
 
               **If disabled, exiftool will fail silently, and hard-to-catch bugs may arise.**
 
-              That said, there may be some use cases where continue-on-error behavior is desired.
+              That said, there may be some use cases where continue-on-error behavior is desired.  (Example: dump all exif in a directory with files which don't all have the same tags, exiftool returns exit code 1 for unknown files, but results are valid for other files with those tags)
 
       :getter: Returns current setting
       :setter: Enable or Disable the check
@@ -72,11 +86,49 @@ Attributes
       :type: bool
 
 
+   .. py:method:: check_tag_names(self)
+      :property:
+
+      Flag to enable/disable checking of tag names
+
+      If enabled, will raise :py:exc:`exiftool.exceptions.ExifToolTagNameError` if an invalid tag name is detected.
+
+      .. warning::
+              ExifToolHelper only checks the validity of the Tag **NAME** based on a simple regex pattern.
+
+              * It *does not* validate whether the tag name is actually valid on the file type(s) you're accessing.
+              * It *does not* validate whether the tag you passed in that "looks like" a tag is actually an option
+              * It does support a "#" at the end of the tag name to disable print conversion
+
+              Please refer to `ExifTool Tag Names`_ documentation for a complete list of valid tags recognized by ExifTool.
+
+      .. warning::
+              While this property is provided to give callers an option to enable/disable tag names checking, it is generally **NOT** recommended to disable ``check_tag_names``.
+
+              **If disabled, you could accidentally edit a file when you meant to read it.**
+
+              Example: ``get_tags("a.jpg", "tag=value")`` will call ``execute_json("-tag=value", "a.jpg")`` which will inadvertently write to a.jpg instead of reading it!
+
+              That said, if PH's exiftool changes its tag name regex and tag names are being erroneously rejected because of this flag, disabling this could be used as a workaround (more importantly, if this is happening, please `file an issue`_!).
+
+      :getter: Returns current setting
+      :setter: Enable or Disable the check
+
+              .. note::
+                      This settings can be changed any time and will only affect subsequent calls
+
+      :type: bool
+
+
+      .. _file an issue: https://github.com/sylikc/pyexiftool/issues
+      .. _ExifTool Tag Names: https://exiftool.org/TagNames/
+
+
    .. py:method:: execute(self, *params)
 
       Override the :py:meth:`exiftool.ExifTool.execute()` method
 
-      Adds logic to auto-start if not running, if auto_start == True
+      Adds logic to auto-start if not running, if :py:attr:`auto_start` == True
 
       :raises ExifToolExecuteError: If :py:attr:`check_execute` == True, and exit status was non-zero
 
@@ -99,16 +151,16 @@ Attributes
 
       :param files: File(s) to be worked on.
 
-              If a ``str`` is provided, it will get tags for a single file
-
-              If an interable is provided, the list is copied and any non-basestring elements are converted to str (to support ``PurePath`` and other similar objects)
+              * If a ``str`` is provided, it will get tags for a single file
+              * If an iterable is provided, the list is copied and any non-basestring elements are converted to str (to support ``PurePath`` and other similar objects)
 
               .. warning::
-                      Currently, filenames are NOT checked for existence, that is left up to the caller.
+                      Currently, filenames are NOT checked for existence!  That is left up to the caller.
 
+              .. warning::
                       Wildcard strings are valid and passed verbatim to exiftool.
 
-                      However, exiftool's globbing is different than Python's globbing.  Read `ExifTool Common Mistakes - Over-use of Wildcards in File Names`_ for more info
+                      However, exiftool's wildcard matching/globbing may be different than Python's matching/globbing, which may cause unexpected behavior if you're using one and comparing the result to the other.  Read `ExifTool Common Mistakes - Over-use of Wildcards in File Names`_ for some related info.
 
       :type files: str or list
 
@@ -141,7 +193,7 @@ Attributes
 
       override the :py:meth:`exiftool.ExifTool.run()` method
 
-      Adds logic to check if already running.  Will not attempt to run if already running (so no warning about 'ExifTool already running' will trigger) 
+      Will not attempt to run if already running (so no warning about 'ExifTool already running' will trigger)
 
 
    .. py:method:: set_tags(self, files, tags, params = None)
@@ -150,26 +202,26 @@ Attributes
 
       :param files: File(s) to be worked on.
 
-              If a ``str`` is provided, it will set tags for a single file
-
-              If an interable is provided, the list is copied and any non-basestring elements are converted to str (to support ``PurePath`` and other similar objects)
+              * If a ``str`` is provided, it will set tags for a single file
+              * If an iterable is provided, the list is copied and any non-basestring elements are converted to str (to support ``PurePath`` and other similar objects)
 
               .. warning::
-                      Currently, filenames are NOT checked for existence, that is left up to the caller.
+                      Currently, filenames are NOT checked for existence!  That is left up to the caller.
 
+              .. warning::
                       Wildcard strings are valid and passed verbatim to exiftool.
 
-                      However, exiftool's globbing is different than Python's globbing.  Read `ExifTool Common Mistakes - Over-use of Wildcards in File Names`_ for more info
+                      However, exiftool's wildcard matching/globbing may be different than Python's matching/globbing, which may cause unexpected behavior if you're using one and comparing the result to the other.  Read `ExifTool Common Mistakes - Over-use of Wildcards in File Names`_ for some related info.
 
       :type files: str or list
 
 
       :param tags: Tag(s) to write.
 
-              Dictionary keys = tags, values = str or list
+              Dictionary keys = tags, values = tag values (str or list)
 
-              If a value is a str, will set key=value
-              If a value is a list, will iterate over list and set each individual value to the same tag (
+              * If a value is a str, will set key=value
+              * If a value is a list, will iterate over list and set each individual value to the same tag (
 
               .. note::
                       The tag names may include group names, as usual in the format ``<group>:<tag>``.
@@ -200,11 +252,11 @@ Attributes
 
    .. py:method:: terminate(self, **opts)
 
-      override the :py:meth:`exiftool.ExifTool.terminate()` method
+      Overrides the :py:meth:`exiftool.ExifTool.terminate()` method.
 
-      Adds logic to check if not running (so no warning about 'ExifTool not running' will trigger)
+      Will not attempt to terminate if not running (so no warning about 'ExifTool not running' will trigger)
 
-      opts are passed directly to the parent verbatim
+      :param opts: passed directly to the parent call :py:meth:`exiftool.ExifTool.terminate()`
 
 
 

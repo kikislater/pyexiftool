@@ -1,4 +1,0 @@
-<map id="inheritancea7a132d5c3" name="inheritancea7a132d5c3">
-<area shape="rect" id="node1" href="#exiftool.exceptions.ExifToolException" target="_top" title="Generic Base class for all ExifTool error classes" alt="" coords="19,19,205,91"/>
-<area shape="rect" id="node2" href="#exiftool.exceptions.ExifToolExecuteError" target="_top" title="ExifTool executed the command but returned a non&#45;zero exit status" alt="" coords="253,19,469,91"/>
-</map>

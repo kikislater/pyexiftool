@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This submodule contains the core ``ExifTool`` class for PyExifTool
+   This submodule contains the core ``ExifTool`` class of PyExifTool
 
    .. note::
            :py:class:`exiftool.helper.ExifTool` class of this submodule is available in the ``exiftool`` namespace as :py:class:`exiftool.ExifTool`
@@ -31,10 +31,16 @@ Attributes
 .. autoapisummary::
 
    exiftool.exiftool.ENCODING_UTF8
+   exiftool.exiftool.JSONDecodeError
 
 
 .. py:data:: ENCODING_UTF8
    :annotation: :str = utf-8
+
+   
+
+.. py:data:: JSONDecodeError
+   
 
    
 
@@ -54,33 +60,9 @@ Attributes
    .. _Exiftool print conversion FAQ: https://exiftool.org/faq.html#Q6
 
 
-   You can pass optional arguments to the constructor:
-
-   * ``executable`` (string): file name of the *exiftool* executable.
-     The default value :py:attr:`exiftool.constants.DEFAULT_EXECUTABLE` will only work if the executable
-     is in your ``PATH``.
-     You can also specify the full path to the ``exiftool`` executable.
-     See :py:attr:`executable` property for more details.
-   * ``common_args`` (list of strings): contains additional parameters for
-     the stay-open instance of exiftool.  The default is ``-G`` and ``-n``.
-     See :py:attr:`common_args` property for more details.
-   * ``win_shell``
-
-     .. note::
-       This parameter may be deprecated in the future
-
-   * ``config_file`` (string): file path to ``-config`` parameter when
-     starting process.
-     See :py:attr:`config_file` property for more details.
-   * ``encoding`` (string): encoding to be used when communicating with
-     exiftool process.  By default, will use ``locale.getpreferredencoding()``
-     See :py:attr:`encoding` property for more details
-   * ``logger`` (object):  Set a custom logger to log status and debug messages to.
-     See :py:attr:`logger` for more details.
-
    Some methods of this class are only available after calling
-   :py:meth:`run()`, which will actually launch the *exiftool* subprocess.  To
-   avoid leaving the subprocess running, make sure to call
+   :py:meth:`run()`, which will actually launch the *exiftool* subprocess.
+   To avoid leaving the subprocess running, make sure to call
    :py:meth:`terminate()` method when finished using the instance.
    This method will also be implicitly called when the instance is
    garbage collected, but there are circumstance when this won't ever
@@ -97,11 +79,53 @@ Attributes
 
    .. warning::
            Note that options and parameters are not checked.  There is no error handling or validation of options passed to *exiftool*.
+
            Nonsensical options are mostly silently ignored by exiftool, so there's not
            much that can be done in that regard.  You should avoid passing
            non-existent files to any of the methods, since this will lead
            to undefined behaviour.
 
+
+   :param executable: Specify file name of the *exiftool* executable if it is in your ``PATH``.  Otherwise, specify the full path to the ``exiftool`` executable.
+
+           Passed directly into :py:attr:`executable` property.
+
+           .. note::
+                   The default value :py:attr:`exiftool.constants.DEFAULT_EXECUTABLE` will only work if the executable is in your ``PATH``.
+
+   :type executable: str, or None to use default
+
+
+   :param common_args:
+           Pass in additional parameters for the stay-open instance of exiftool.
+
+           Defaults to *['-G', '-n']* as this is the most common use case.
+
+           * -G separates the grouping
+           * -n (print conversion disabled) improves the speed and consistency of output, and is more machine-parsable
+
+           Passed directly into :py:attr:`common_args` property.
+   :type common_args: list of str, or None.
+
+   :param bool win_shell: (Windows only) Minimizes the exiftool process.
+
+           .. note::
+                   This parameter may be deprecated in the future
+
+   :param config_file:
+           File path to ``-config`` parameter when starting exiftool process.
+
+           Passed directly into :py:attr:`config_file` property.
+   :type config_file: str, Path, or None
+
+   :param encoding: Specify encoding to be used when communicating with
+           exiftool process.  By default, will use ``locale.getpreferredencoding()``
+
+           Passed directly into :py:attr:`encoding` property.
+
+   :param logger: Set a custom logger to log status and debug messages to.
+
+           Passed directly into :py:attr:`logger` property.
 
    .. py:attribute:: logger
       
@@ -296,6 +320,13 @@ Attributes
 
               You can adjust the output structure with various *exiftool* options.
 
+      .. warning::
+              This method does not verify the exit status code returned by *exiftool*.  That is left up to the caller.
+
+              This will mimic exiftool's default method of operation "continue on error" and "best attempt" to complete commands given.
+
+              If you want automated error checking, use :py:class:`exiftool.ExifToolHelper`
+
       :param params: One or more parameters to send to the ``exiftool`` subprocess.
 
               Typically passed in via `Unpacking Argument Lists`_
@@ -306,15 +337,23 @@ Attributes
       :type params: one or more string parameters
 
       :return: Valid JSON parsed into a Python list of dicts
-      :raises OutputEmpty: If *exiftool* did not return any STDOUT
+      :raises ExifToolOutputEmptyError: If *exiftool* did not return any STDOUT
 
               .. note::
-                      This is not necessarily an error, setting tags can cause this behavior.  Use :py:meth:`execute()` to set tags.
+                      This is not necessarily an *exiftool* error, but rather a programmer error.
 
-      :raises OutputNotJSON: If *exiftool* returned STDOUT which is invalid JSON.
+                      For example, setting tags can cause this behavior.
+
+                      If you are executing a command and expect no output, use :py:meth:`execute()` instead.
+
+      :raises ExifToolJSONInvalidError: If *exiftool* returned STDOUT which is invalid JSON.
 
               .. note::
-                      This is not necessarily an error, ``-w`` can cause this behavior.  Use :py:meth:`execute()` if using the ``-w`` flag.
+                      This is not necessarily an *exiftool* error, but rather a programmer error.
+
+                      For example, ``-w`` can cause this behavior.
+
+                      If you are executing a command and expect non-JSON output, use :py:meth:`execute()` instead.
 
 
       .. _Unpacking Argument Lists: https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists

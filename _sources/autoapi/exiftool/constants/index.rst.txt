@@ -5,7 +5,7 @@
 
 .. autoapi-nested-parse::
 
-   This file defines constants which are used by other modules in the package
+   This submodule defines constants which are used by other modules in the package
 
 
 

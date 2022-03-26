@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Class exiftool.ExifTool &mdash; PyExifTool 0.5.2 documentation</title>
+  <title>Class exiftool.ExifTool &mdash; PyExifTool 0.5.3 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -107,34 +107,9 @@ which prints values in a human-readable way but
 may be slower. If print conversion is enabled, appending <code class="docutils literal notranslate"><span class="pre">#</span></code> to a tag
 name disables the print conversion for this particular tag.
 See <a class="reference external" href="https://exiftool.org/faq.html#Q6">Exiftool print conversion FAQ</a> for more details.</p>
-<p>You can pass optional arguments to the constructor:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">executable</span></code> (string): file name of the <em>exiftool</em> executable.
-The default value <a class="reference internal" href="../autoapi/exiftool/constants/index.html#id0" title="exiftool.constants.DEFAULT_EXECUTABLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">exiftool.constants.DEFAULT_EXECUTABLE</span></code></a> will only work if the executable
-is in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.
-You can also specify the full path to the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> executable.
-See <a class="reference internal" href="#exiftool.ExifTool.executable" title="exiftool.ExifTool.executable"><code class="xref py py-attr docutils literal notranslate"><span class="pre">executable</span></code></a> property for more details.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">common_args</span></code> (list of strings): contains additional parameters for
-the stay-open instance of exiftool.  The default is <code class="docutils literal notranslate"><span class="pre">-G</span></code> and <code class="docutils literal notranslate"><span class="pre">-n</span></code>.
-See <a class="reference internal" href="#exiftool.ExifTool.common_args" title="exiftool.ExifTool.common_args"><code class="xref py py-attr docutils literal notranslate"><span class="pre">common_args</span></code></a> property for more details.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">win_shell</span></code></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This parameter may be deprecated in the future</p>
-</div>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">config_file</span></code> (string): file path to <code class="docutils literal notranslate"><span class="pre">-config</span></code> parameter when
-starting process.
-See <a class="reference internal" href="#exiftool.ExifTool.config_file" title="exiftool.ExifTool.config_file"><code class="xref py py-attr docutils literal notranslate"><span class="pre">config_file</span></code></a> property for more details.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">encoding</span></code> (string): encoding to be used when communicating with
-exiftool process.  By default, will use <code class="docutils literal notranslate"><span class="pre">locale.getpreferredencoding()</span></code>
-See <a class="reference internal" href="#exiftool.ExifTool.encoding" title="exiftool.ExifTool.encoding"><code class="xref py py-attr docutils literal notranslate"><span class="pre">encoding</span></code></a> property for more details</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">logger</span></code> (object):  Set a custom logger to log status and debug messages to.
-See <a class="reference internal" href="#exiftool.ExifTool.logger" title="exiftool.ExifTool.logger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">logger</span></code></a> for more details.</p></li>
-</ul>
 <p>Some methods of this class are only available after calling
-<a class="reference internal" href="#exiftool.ExifTool.run" title="exiftool.ExifTool.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>, which will actually launch the <em>exiftool</em> subprocess.  To
-avoid leaving the subprocess running, make sure to call
+<a class="reference internal" href="#exiftool.ExifTool.run" title="exiftool.ExifTool.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>, which will actually launch the <em>exiftool</em> subprocess.
+To avoid leaving the subprocess running, make sure to call
 <a class="reference internal" href="#exiftool.ExifTool.terminate" title="exiftool.ExifTool.terminate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">terminate()</span></code></a> method when finished using the instance.
 This method will also be implicitly called when the instance is
 garbage collected, but there are circumstance when this won’t ever
@@ -150,28 +125,97 @@ to use the <code class="xref py py-class docutils literal notranslate"><span cla
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Note that options and parameters are not checked.  There is no error handling or validation of options passed to <em>exiftool</em>.
-Nonsensical options are mostly silently ignored by exiftool, so there’s not
+<p>Note that options and parameters are not checked.  There is no error handling or validation of options passed to <em>exiftool</em>.</p>
+<p>Nonsensical options are mostly silently ignored by exiftool, so there’s not
 much that can be done in that regard.  You should avoid passing
 non-existent files to any of the methods, since this will lead
 to undefined behaviour.</p>
 </div>
-<dl class="py method">
-<dt class="sig sig-object py" id="exiftool.ExifTool.__init__">
-<span class="sig-prename descclassname"><span class="pre">exiftool.ExifTool.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">common_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['-G',</span> <span class="pre">'-n']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_shell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifTool.__init__" title="Permalink to this definition"></a></dt>
-<dd><p><code class="docutils literal notranslate"><span class="pre">common_args</span></code> defaults to <em>-G -n</em> as this is the most common use case.</p>
+<dl class="field-list">
+<dt class="field-odd">param executable</dt>
+<dd class="field-odd"><p>Specify file name of the <em>exiftool</em> executable if it is in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.  Otherwise, specify the full path to the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> executable.</p>
+<p>Passed directly into <a class="reference internal" href="#exiftool.ExifTool.executable" title="exiftool.ExifTool.executable"><code class="xref py py-attr docutils literal notranslate"><span class="pre">executable</span></code></a> property.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default value <a class="reference internal" href="../autoapi/exiftool/constants/index.html#id0" title="exiftool.constants.DEFAULT_EXECUTABLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">exiftool.constants.DEFAULT_EXECUTABLE</span></code></a> will only work if the executable is in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+</div>
+</dd>
+<dt class="field-even">type executable</dt>
+<dd class="field-even"><p>str, or None to use default</p>
+</dd>
+<dt class="field-odd">param common_args</dt>
+<dd class="field-odd"><p>Pass in additional parameters for the stay-open instance of exiftool.</p>
+<p>Defaults to <em>[‘-G’, ‘-n’]</em> as this is the most common use case.</p>
 <ul class="simple">
 <li><p>-G separates the grouping</p></li>
 <li><p>-n (print conversion disabled) improves the speed and consistency of output, and is more machine-parsable</p></li>
 </ul>
-<dl class="field-list simple">
+<p>Passed directly into <a class="reference internal" href="#exiftool.ExifTool.common_args" title="exiftool.ExifTool.common_args"><code class="xref py py-attr docutils literal notranslate"><span class="pre">common_args</span></code></a> property.</p>
+</dd>
+<dt class="field-even">type common_args</dt>
+<dd class="field-even"><p>list of str, or None.</p>
+</dd>
+<dt class="field-odd">param bool win_shell</dt>
+<dd class="field-odd"><p>(Windows only) Minimizes the exiftool process.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This parameter may be deprecated in the future</p>
+</div>
+</dd>
+<dt class="field-even">param config_file</dt>
+<dd class="field-even"><p>File path to <code class="docutils literal notranslate"><span class="pre">-config</span></code> parameter when starting exiftool process.</p>
+<p>Passed directly into <a class="reference internal" href="#exiftool.ExifTool.config_file" title="exiftool.ExifTool.config_file"><code class="xref py py-attr docutils literal notranslate"><span class="pre">config_file</span></code></a> property.</p>
+</dd>
+<dt class="field-odd">type config_file</dt>
+<dd class="field-odd"><p>str, Path, or None</p>
+</dd>
+<dt class="field-even">param encoding</dt>
+<dd class="field-even"><p>Specify encoding to be used when communicating with
+exiftool process.  By default, will use <code class="docutils literal notranslate"><span class="pre">locale.getpreferredencoding()</span></code></p>
+<p>Passed directly into <a class="reference internal" href="#exiftool.ExifTool.encoding" title="exiftool.ExifTool.encoding"><code class="xref py py-attr docutils literal notranslate"><span class="pre">encoding</span></code></a> property.</p>
+</dd>
+<dt class="field-odd">param logger</dt>
+<dd class="field-odd"><p>Set a custom logger to log status and debug messages to.</p>
+<p>Passed directly into <a class="reference internal" href="#exiftool.ExifTool.logger" title="exiftool.ExifTool.logger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">logger</span></code></a> property.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="exiftool.ExifTool.__init__">
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifTool.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">common_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['-G',</span> <span class="pre">'-n']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_shell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifTool.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>executable</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>common_args</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – </p></li>
-<li><p><strong>win_shell</strong> (<em>bool</em>) – </p></li>
-<li><p><strong>config_file</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
-<li><p><strong>encoding</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>executable</strong> (<em>str</em><em>, or </em><em>None to use default</em>) – <p>Specify file name of the <em>exiftool</em> executable if it is in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.  Otherwise, specify the full path to the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> executable.</p>
+<p>Passed directly into <a class="reference internal" href="#exiftool.ExifTool.executable" title="exiftool.ExifTool.executable"><code class="xref py py-attr docutils literal notranslate"><span class="pre">executable</span></code></a> property.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default value <a class="reference internal" href="../autoapi/exiftool/constants/index.html#id0" title="exiftool.constants.DEFAULT_EXECUTABLE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">exiftool.constants.DEFAULT_EXECUTABLE</span></code></a> will only work if the executable is in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+</div>
+</p></li>
+<li><p><strong>common_args</strong> (<em>list of str</em><em>, or </em><em>None.</em>) – <p>Pass in additional parameters for the stay-open instance of exiftool.</p>
+<p>Defaults to <em>[‘-G’, ‘-n’]</em> as this is the most common use case.</p>
+<ul>
+<li><p>-G separates the grouping</p></li>
+<li><p>-n (print conversion disabled) improves the speed and consistency of output, and is more machine-parsable</p></li>
+</ul>
+<p>Passed directly into <a class="reference internal" href="#exiftool.ExifTool.common_args" title="exiftool.ExifTool.common_args"><code class="xref py py-attr docutils literal notranslate"><span class="pre">common_args</span></code></a> property.</p>
+</p></li>
+<li><p><strong>win_shell</strong> (<em>bool</em>) – <p>(Windows only) Minimizes the exiftool process.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This parameter may be deprecated in the future</p>
+</div>
+</p></li>
+<li><p><strong>config_file</strong> (<em>str</em><em>, </em><em>Path</em><em>, or </em><em>None</em>) – <p>File path to <code class="docutils literal notranslate"><span class="pre">-config</span></code> parameter when starting exiftool process.</p>
+<p>Passed directly into <a class="reference internal" href="#exiftool.ExifTool.config_file" title="exiftool.ExifTool.config_file"><code class="xref py py-attr docutils literal notranslate"><span class="pre">config_file</span></code></a> property.</p>
+</p></li>
+<li><p><strong>encoding</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – <p>Specify encoding to be used when communicating with
+exiftool process.  By default, will use <code class="docutils literal notranslate"><span class="pre">locale.getpreferredencoding()</span></code></p>
+<p>Passed directly into <a class="reference internal" href="#exiftool.ExifTool.encoding" title="exiftool.ExifTool.encoding"><code class="xref py py-attr docutils literal notranslate"><span class="pre">encoding</span></code></a> property.</p>
+</p></li>
+<li><p><strong>logger</strong> – <p>Set a custom logger to log status and debug messages to.</p>
+<p>Passed directly into <a class="reference internal" href="#exiftool.ExifTool.logger" title="exiftool.ExifTool.logger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">logger</span></code></a> property.</p>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -399,6 +443,12 @@ name of the file it corresponds to in the key <code class="docutils literal notr
 <p>By default, the tag names include the group name in the format &lt;group&gt;:&lt;tag&gt; (if using the <code class="docutils literal notranslate"><span class="pre">-G</span></code> option).</p>
 <p>You can adjust the output structure with various <em>exiftool</em> options.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method does not verify the exit status code returned by <em>exiftool</em>.  That is left up to the caller.</p>
+<p>This will mimic exiftool’s default method of operation “continue on error” and “best attempt” to complete commands given.</p>
+<p>If you want automated error checking, use <a class="reference internal" href="2-helper.html#module-exiftool.ExifToolHelper" title="exiftool.ExifToolHelper"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifToolHelper</span></code></a></p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>params</strong> (<em>one</em><em> or </em><em>more string parameters</em>) – <p>One or more parameters to send to the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> subprocess.</p>
@@ -414,16 +464,20 @@ name of the file it corresponds to in the key <code class="docutils literal notr
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference internal" href="../autoapi/exiftool/exceptions/index.html#exiftool.exceptions.OutputEmpty" title="exiftool.exceptions.OutputEmpty"><strong>OutputEmpty</strong></a> – <p>If <em>exiftool</em> did not return any STDOUT</p>
+<li><p><a class="reference internal" href="../autoapi/exiftool/exceptions/index.html#exiftool.exceptions.ExifToolOutputEmptyError" title="exiftool.exceptions.ExifToolOutputEmptyError"><strong>ExifToolOutputEmptyError</strong></a> – <p>If <em>exiftool</em> did not return any STDOUT</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This is not necessarily an error, setting tags can cause this behavior.  Use <a class="reference internal" href="#exiftool.ExifTool.execute" title="exiftool.ExifTool.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> to set tags.</p>
+<p>This is not necessarily an <em>exiftool</em> error, but rather a programmer error.</p>
+<p>For example, setting tags can cause this behavior.</p>
+<p>If you are executing a command and expect no output, use <a class="reference internal" href="#exiftool.ExifTool.execute" title="exiftool.ExifTool.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> instead.</p>
 </div>
 </p></li>
-<li><p><a class="reference internal" href="../autoapi/exiftool/exceptions/index.html#exiftool.exceptions.OutputNotJSON" title="exiftool.exceptions.OutputNotJSON"><strong>OutputNotJSON</strong></a> – <p>If <em>exiftool</em> returned STDOUT which is invalid JSON.</p>
+<li><p><a class="reference internal" href="../autoapi/exiftool/exceptions/index.html#exiftool.exceptions.ExifToolJSONInvalidError" title="exiftool.exceptions.ExifToolJSONInvalidError"><strong>ExifToolJSONInvalidError</strong></a> – <p>If <em>exiftool</em> returned STDOUT which is invalid JSON.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This is not necessarily an error, <code class="docutils literal notranslate"><span class="pre">-w</span></code> can cause this behavior.  Use <a class="reference internal" href="#exiftool.ExifTool.execute" title="exiftool.ExifTool.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> if using the <code class="docutils literal notranslate"><span class="pre">-w</span></code> flag.</p>
+<p>This is not necessarily an <em>exiftool</em> error, but rather a programmer error.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">-w</span></code> can cause this behavior.</p>
+<p>If you are executing a command and expect non-JSON output, use <a class="reference internal" href="#exiftool.ExifTool.execute" title="exiftool.ExifTool.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> instead.</p>
 </div>
 </p></li>
 </ul>

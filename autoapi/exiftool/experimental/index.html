@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>exiftool.experimental &mdash; PyExifTool 0.5.2 documentation</title>
+  <title>exiftool.experimental &mdash; PyExifTool 0.5.3 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -95,22 +95,7 @@
              
   <section id="module-exiftool.experimental">
 <span id="exiftool-experimental"></span><h1><a class="reference internal" href="#module-exiftool.experimental" title="exiftool.experimental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exiftool.experimental</span></code></a><a class="headerlink" href="#module-exiftool.experimental" title="Permalink to this headline"></a></h1>
-<p>This contains the “experimental” functionality.  In the grand scheme of things, this class
-contains “untested” functionality, or those that are less used.
-If there is increased demand, or robustness improves, functionality may merge into
-<a class="reference internal" href="../../../reference/2-helper.html#module-exiftool.ExifToolHelper" title="exiftool.ExifToolHelper"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifToolHelper</span></code></a> class.</p>
-<p>The starting point of this class was to remove all the “less used” functionality that was merged in
-on some arbitrary pull requests to the pre-fork repository.  This code is brittle and contains
-a lot of “hacks” for a niche set of use cases.  As such, it shouldn’t crowd the core functionality
-of the <a class="reference internal" href="../../../reference/1-exiftool.html#module-exiftool.ExifTool" title="exiftool.ExifTool"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifTool</span></code></a> class or the stable extended functionality of the <a class="reference internal" href="../../../reference/2-helper.html#module-exiftool.ExifToolHelper" title="exiftool.ExifToolHelper"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifToolHelper</span></code></a> class.</p>
-<p>The class heirarchy:  ExifTool -&gt; ExifToolHelper -&gt; ExifToolAlpha</p>
-<ul class="simple">
-<li><p>ExifTool - stable base class with CORE functionality</p></li>
-<li><p>ExifToolHelper - user friendly class that extends the base class with general functionality not found in the core</p></li>
-<li><p>ExifToolAlpha - alpha-quality code which extends the ExifToolHelper to add functionality that is niche, brittle, or not well tested</p></li>
-</ul>
-<p>Because of this heirarchy, you could always use/extend the <a class="reference internal" href="../../../reference/3-alpha.html#module-exiftool.ExifToolAlpha" title="exiftool.ExifToolAlpha"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifToolAlpha</span></code></a> class to have all functionality,
-or at your discretion, use one of the more stable classes above.</p>
+<p>This submodule contains the <code class="docutils literal notranslate"><span class="pre">ExifToolAlpha</span></code> class, which extends the <code class="docutils literal notranslate"><span class="pre">ExifToolHelper</span></code> class with experimental functionality.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.helper.ExifToolAlpha</span></code> class of this submodule is available in the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> namespace as <a class="reference internal" href="../../../reference/3-alpha.html#module-exiftool.ExifToolAlpha" title="exiftool.ExifToolAlpha"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifToolAlpha</span></code></a></p>
@@ -126,7 +111,7 @@ or at your discretion, use one of the more stable classes above.</p>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#exiftool.experimental.ExifToolAlpha" title="exiftool.experimental.ExifToolAlpha"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExifToolAlpha</span></code></a></p></td>
-<td><p>this class extends the ExifToolHelper class with alpha-quality code, which,</p></td>
+<td><p>This class is for the “experimental” functionality.  In the grand scheme of things, this class</p></td>
 </tr>
 </tbody>
 </table>
@@ -179,27 +164,39 @@ or at your discretion, use one of the more stable classes above.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="exiftool.experimental.ExifToolAlpha">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.experimental.</span></span><span class="sig-name descname"><span class="pre">ExifToolAlpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auto_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_execute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.experimental.ExifToolAlpha" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">exiftool.experimental.</span></span><span class="sig-name descname"><span class="pre">ExifToolAlpha</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auto_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_execute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_tag_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.experimental.ExifToolAlpha" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../helper/index.html#exiftool.helper.ExifToolHelper" title="exiftool.helper.ExifToolHelper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">exiftool.helper.ExifToolHelper</span></code></a></p>
-<div class="graphviz"><img src="../../../_images/inheritance-3061d943ac4f1caa4e96de5a0b137bd8dc76c207.png" alt="Inheritance diagram of exiftool.experimental.ExifToolAlpha" usemap="#inheritance6f2512545e" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="../../../_images/inheritance-152ebddc28509c5f1d133cbe09bb17d3419a11b4.png" alt="Inheritance diagram of exiftool.experimental.ExifToolAlpha" usemap="#inheritance6f2512545e" class="inheritance graphviz" /></div>
 <map id="inheritance6f2512545e" name="inheritance6f2512545e">
 <area shape="rect" id="node1" href="../../../reference/1-exiftool.html#module-exiftool.ExifTool" target="_top" title="Run the `exiftool` command&#45;line tool and communicate with it." alt="" coords="19,19,114,91"/>
 <area shape="rect" id="node3" href="../../../reference/2-helper.html#module-exiftool.ExifToolHelper" target="_top" title="This class extends the low&#45;level :py:class:`exiftool.ExifTool` class with &#39;wrapper&#39;/&#39;helper&#39; functionality" alt="" coords="162,19,317,91"/>
-<area shape="rect" id="node2" href="../../../reference/3-alpha.html#module-exiftool.ExifToolAlpha" target="_top" title="this class extends the ExifToolHelper class with alpha&#45;quality code, which," alt="" coords="365,19,511,91"/>
-</map><p>this class extends the ExifToolHelper class with alpha-quality code, which,
-may add functionality, but may introduce bugs or add in unneeded bloat which may
-be specific to niche use cases</p>
-<p>lots of these methods are from the original incarnation of pyexiftool
-with miscellaneous added pull requests.</p>
-<p>There’s a lot of extra functionality, but the code quality leaves a lot to be desired</p>
-<p>And in some cases, there are edge cases which return unexpected results… so
-they will be placed into this class until the functionality can be standardized in a “stable” way</p>
+<area shape="rect" id="node2" href="../../../reference/3-alpha.html#module-exiftool.ExifToolAlpha" target="_top" title="This class is for the &quot;experimental&quot; functionality. &#160;In the grand scheme of things, this class" alt="" coords="365,19,511,91"/>
+</map><p>This class is for the “experimental” functionality.  In the grand scheme of things, this class
+contains “not well tested” functionality, methods that are less used, or methods with niche use cases.
+In some methods, edge cases on some of these methods may produce unexpected or ambiguous results.
+However, if there is increased demand, or robustness improves, functionality may merge into
+<a class="reference internal" href="../../../reference/2-helper.html#module-exiftool.ExifToolHelper" title="exiftool.ExifToolHelper"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifToolHelper</span></code></a> class.</p>
+<p>The starting point of this class was to remove all the “less used” functionality that was merged in
+on some arbitrary pull requests to the original v0.2 PyExifTool repository.  This alpha-quality code is brittle and contains
+a lot of “hacks” for a niche set of use cases.  As such, it may be buggy and it shouldn’t crowd the core functionality
+of the <a class="reference internal" href="../../../reference/1-exiftool.html#module-exiftool.ExifTool" title="exiftool.ExifTool"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifTool</span></code></a> class or the stable extended functionality of the <a class="reference internal" href="../../../reference/2-helper.html#module-exiftool.ExifToolHelper" title="exiftool.ExifToolHelper"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifToolHelper</span></code></a> class
+with unneeded bloat.</p>
+<p>The class heirarchy:  ExifTool -&gt; ExifToolHelper -&gt; ExifToolAlpha</p>
+<ul class="simple">
+<li><p>ExifTool - stable base class with CORE functionality</p></li>
+<li><p>ExifToolHelper - user friendly class that extends the base class with general functionality not found in the core</p></li>
+<li><p>ExifToolAlpha - alpha-quality code which extends the ExifToolHelper to add functionality that is niche, brittle, or not well tested</p></li>
+</ul>
+<p>Because of this heirarchy, you could always use/extend the <a class="reference internal" href="../../../reference/3-alpha.html#module-exiftool.ExifToolAlpha" title="exiftool.ExifToolAlpha"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifToolAlpha</span></code></a> class to have all functionality,
+or at your discretion, use one of the more stable classes above.</p>
 <p>Please issue PR to this class to add functionality, even if not tested well.  This class is for experimental code after all!</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>auto_start</strong> (<em>bool</em>) – </p></li>
-<li><p><strong>check_execute</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>auto_start</strong> (<em>bool</em>) – Will automatically start the exiftool process on first command run, defaults to True</p></li>
+<li><p><strong>check_execute</strong> (<em>bool</em>) – Will check the exit status (return code) of all commands.  This catches some invalid commands passed to exiftool subprocess, defaults to True.  See <code class="xref py py-attr docutils literal notranslate"><span class="pre">check_execute</span></code> for more info.</p></li>
+<li><p><strong>check_tag_names</strong> (<em>bool</em>) – Will check the tag names provided to methods which work directly with tag names.  This catches unintended uses and bugs, default to True.  See <code class="xref py py-attr docutils literal notranslate"><span class="pre">check_tag_names</span></code> for more info.</p></li>
+<li><p><strong>kwargs</strong> – All other parameters are passed directly to the super-class constructor: <a class="reference internal" href="../../../reference/1-exiftool.html#exiftool.ExifTool.__init__" title="exiftool.ExifTool.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">exiftool.ExifTool.__init__()</span></code></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -230,6 +227,7 @@ they will be placed into this class until the functionality can be standardized 
 <dd><p>Extract a single tag from a single file.</p>
 <p>The return value is the value of the specified tag, or
 <code class="docutils literal notranslate"><span class="pre">None</span></code> if this tag was not found in the file.</p>
+<p>Does existence checks</p>
 </dd></dl>
 
 <dl class="py method">
@@ -274,7 +272,7 @@ as a string.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="exiftool.experimental.ExifToolAlpha.set_keywords_batch">
-<span class="sig-name descname"><span class="pre">set_keywords_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.experimental.ExifToolAlpha.set_keywords_batch" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_keywords_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.experimental.ExifToolAlpha.set_keywords_batch" title="Permalink to this definition"></a></dt>
 <dd><p>Modifies the keywords tag for the given files.</p>
 <p>The first argument is the operation mode:</p>
 <ul class="simple">

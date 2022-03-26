@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Release Process &mdash; PyExifTool 0.5.2 documentation</title>
+  <title>Release Process &mdash; PyExifTool 0.5.3 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -115,15 +115,28 @@
 <section id="upload-to-test-pypi">
 <h2>Upload to Test PyPI<a class="headerlink" href="#upload-to-test-pypi" title="Permalink to this headline"></a></h2>
 <p>Set up the <code class="docutils literal notranslate"><span class="pre">$HOME/.pypirc</span></code> (Linux) or <code class="docutils literal notranslate"><span class="pre">%UserProfile%\.pypirc</span></code> (Windows)</p>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">--repository</span> <span class="pre">testpypi</span> <span class="pre">dist/*</span></code></p></li>
-<li><p>Check package uploaded properly: <a class="reference external" href="https://test.pypi.org/project/PyExifTool/#history">TestPyPI PyExifTool</a></p></li>
-<li><p>Test in a new temporary venv: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">-i</span> <span class="pre">https://test.pypi.org/simple/</span> <span class="pre">PyExifTool==&lt;version&gt;</span></code></p>
-<ul class="simple">
-<li><p>If there is an error with SSL verification, just trust it: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--trusted-host</span> <span class="pre">test-files.pythonhosted.org</span> <span class="pre">-U</span> <span class="pre">-i</span> <span class="pre">https://test.pypi.org/simple/</span> <span class="pre">PyExifTool==&lt;version&gt;</span></code></p></li>
+<li><p>Check package uploaded properly: <a class="reference external" href="https://test.pypi.org/project/PyExifTool/#history">TestPyPI PyExifTool</a>.</p></li>
+<li><p>Create a temporary venv to test PyPI and run tests</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">tmp</span></code></p></li>
+<li><p>Activate venv</p></li>
+<li><p>Make sure exiftool is found on PATH</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">-i</span> <span class="pre">https://test.pypi.org/simple/</span> <span class="pre">PyExifTool</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If there is an error with SSL verification, just trust it: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--trusted-host</span> <span class="pre">test-files.pythonhosted.org</span> <span class="pre">-U</span> <span class="pre">-i</span> <span class="pre">https://test.pypi.org/simple/</span> <span class="pre">PyExifTool</span></code></p></li>
+<li><p>If you want to test a specific version, can specify as <code class="docutils literal notranslate"><span class="pre">PyExifTool==&lt;version&gt;</span></code>, otherwise it installs the latest by default</p></li>
 </ul>
+</div></blockquote>
 </li>
-<li><p>Run tests and examine files installed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pytext</span> <span class="pre">-v</span> <span class="pre">&lt;path</span> <span class="pre">to</span> <span class="pre">tests</span> <span class="pre">directory&gt;</span></code></p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>Examine files installed to make sure it looks ok</p></li>
 <li><p>Cleanup: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">uninstall</span> <span class="pre">PyExifTool</span></code>, then delete temp venv</p></li>
 </ol>
 </section>
