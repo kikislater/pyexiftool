@@ -248,7 +248,7 @@ Dict: Composite:ImageSize = 64 64
 <section id="setting-tags">
 <h3>Setting Tags<a class="headerlink" href="#setting-tags" title="Permalink to this headline"></a></h3>
 <ul>
-<li><p>setting date and time of some files to current time, overwriting file, but preserving original mod date</p>
+<li><p>Setting date and time of some files to current time, overwriting file, but preserving original mod date</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">exiftool</span> <span class="kn">import</span> <span class="n">ExifToolHelper</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
@@ -264,11 +264,24 @@ Dict: Composite:ImageSize = 64 64
 <p>(No output is returned if successful)</p>
 </div></blockquote>
 </li>
+<li><p>Setting keywords for a file.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">exiftool</span> <span class="kn">import</span> <span class="n">ExifToolHelper</span>
+<span class="k">with</span> <span class="n">ExifToolHelper</span><span class="p">()</span> <span class="k">as</span> <span class="n">et</span><span class="p">:</span>
+    <span class="n">et</span><span class="o">.</span><span class="n">set_tags</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;rose.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;skyblue.png&quot;</span><span class="p">],</span>
+        <span class="n">tags</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Keywords&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sunny&quot;</span><span class="p">,</span> <span class="s2">&quot;nice day&quot;</span><span class="p">,</span> <span class="s2">&quot;cool&quot;</span><span class="p">,</span> <span class="s2">&quot;awesome&quot;</span><span class="p">]}</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>(No output is returned if successful)</p>
+</div></blockquote>
+</li>
 </ul>
 </section>
 <section id="exceptions">
 <h3>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline"></a></h3>
-<p>By default, ExifToolHelper has some <strong>built-in error checking</strong>, making the methods safer to use than directly calling the base methods directly.</p>
+<p>By default, ExifToolHelper has some <strong>built-in error checking</strong>, making the methods safer to use than calling the base methods directly.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>While “safer”, the error checking isn’t fool-proof.  There are a lot of cases where <em>exiftool</em> just silently ignores bad input and doesn’t indicate an error.</p>
@@ -366,7 +379,7 @@ exiftool.exceptions.ExifToolOutputEmptyError: execute_json expected output on st
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">exiftool</span> <span class="kn">import</span> <span class="n">ExifTool</span>
 <span class="k">with</span> <span class="n">ExifTool</span><span class="p">()</span> <span class="k">as</span> <span class="n">et</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">et</span><span class="o">.</span><span class="n">execute_json</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="s2">&quot;-XMP:Subject=hi&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;skyblue.png&quot;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">et</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="s2">&quot;-XMP:Subject=hi&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;skyblue.png&quot;</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>Output:</p>
@@ -384,7 +397,7 @@ exiftool.exceptions.ExifToolOutputEmptyError: execute_json expected output on st
 <section id="exiftool">
 <h2>ExifTool<a class="headerlink" href="#exiftool" title="Permalink to this headline"></a></h2>
 <p>Using methods provided by <a class="reference internal" href="reference/1-exiftool.html#module-exiftool.ExifTool" title="exiftool.ExifTool"><code class="xref py py-class docutils literal notranslate"><span class="pre">exiftool.ExifTool</span></code></a></p>
-<p>exiftool.ExifTool provides lower level functionality for advanced use cases.</p>
+<p>Calling execute() or execute_json() provides raw functionality for advanced use cases.  Use with care!</p>
 </section>
 </section>
 
