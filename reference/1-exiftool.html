@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Class exiftool.ExifToolHelper" href="2-helper.html" />
-    <link rel="prev" title="Examples" href="../examples.html" /> 
+    <link rel="prev" title="Examples / Quick Start" href="../examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../package.html">Package Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples / Quick Start</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Class exiftool.ExifTool</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifTool.__init__">__init__</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exiftool.ExifTool.block_size">block_size</a></li>
@@ -68,7 +68,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="2-helper.html">Class exiftool.ExifToolHelper</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3-alpha.html">Class exiftool.ExifToolAlpha</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../autoapi/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sylikc/pyexiftool">Source code on GitHub</a></li>
 </ul>
 
         </div>
@@ -145,7 +147,7 @@ to undefined behaviour.</p>
 </dd>
 <dt class="field-odd">param common_args</dt>
 <dd class="field-odd"><p>Pass in additional parameters for the stay-open instance of exiftool.</p>
-<p>Defaults to <em>[‘-G’, ‘-n’]</em> as this is the most common use case.</p>
+<p>Defaults to <code class="docutils literal notranslate"><span class="pre">['-G',</span> <span class="pre">'-n']</span></code> as this is the most common use case.</p>
 <ul class="simple">
 <li><p>-G separates the grouping</p></li>
 <li><p>-n (print conversion disabled) improves the speed and consistency of output, and is more machine-parsable</p></li>
@@ -193,7 +195,7 @@ exiftool process.  By default, will use <code class="docutils literal notranslat
 </div>
 </p></li>
 <li><p><strong>common_args</strong> (<em>list of str</em><em>, or </em><em>None.</em>) – <p>Pass in additional parameters for the stay-open instance of exiftool.</p>
-<p>Defaults to <em>[‘-G’, ‘-n’]</em> as this is the most common use case.</p>
+<p>Defaults to <code class="docutils literal notranslate"><span class="pre">['-G',</span> <span class="pre">'-n']</span></code> as this is the most common use case.</p>
 <ul>
 <li><p>-G separates the grouping</p></li>
 <li><p>-n (print conversion disabled) improves the speed and consistency of output, and is more machine-parsable</p></li>
@@ -381,7 +383,7 @@ If path given is not absolute, searches environment <code class="docutils litera
 <dd><p>Execute the given batch of parameters with <em>exiftool</em>.</p>
 <p>This method accepts any number of parameters and sends them to
 the attached <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> subprocess.  The process must be
-running, otherwise <code class="docutils literal notranslate"><span class="pre">ExifToolNotRunning</span></code> is raised.  The final
+running, otherwise <a class="reference internal" href="../autoapi/exiftool/exceptions/index.html#exiftool.exceptions.ExifToolNotRunning" title="exiftool.exceptions.ExifToolNotRunning"><code class="xref py py-exc docutils literal notranslate"><span class="pre">exiftool.exceptions.ExifToolNotRunning</span></code></a> is raised.  The final
 <code class="docutils literal notranslate"><span class="pre">-execute</span></code> necessary to actually run the batch is appended
 automatically; see the documentation of <a class="reference internal" href="#exiftool.ExifTool.run" title="exiftool.ExifTool.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> for
 the common options.  The <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> output is read up to the
@@ -657,7 +659,7 @@ See CPython issue <a class="reference external" href="https://bugs.python.org/is
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples.html" class="btn btn-neutral float-left" title="Examples / Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="2-helper.html" class="btn btn-neutral float-right" title="Class exiftool.ExifToolHelper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
