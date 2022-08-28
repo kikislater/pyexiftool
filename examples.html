@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examples / Quick Start &mdash; PyExifTool 0.5.3 documentation</title>
+  <title>Examples / Quick Start &mdash; PyExifTool 0.5.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -109,13 +109,13 @@
 <p>Both methods take an argument list <code class="docutils literal notranslate"><span class="pre">*args</span></code>.  Examples:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As a general rule of thumb, if there is an <strong>unquoted space on the command line</strong>, it’s a <strong>separate argument to the method</strong></p>
+<p>As a general rule of thumb, if there is an <strong>unquoted space on the command line</strong> to <em>exiftool</em>, it’s a <strong>separate argument to the method</strong> in PyExifTool.</p>
 </div>
 <ul>
 <li><p>Calling directly:</p>
 <blockquote>
 <div><ul>
-<li><p>command line:</p>
+<li><p>exiftool command-line:</p>
 <blockquote>
 <div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>exiftool -XMPToolKit -Subject rose.jpg
 </pre></div>
@@ -135,7 +135,7 @@
 <li><p>Using argument unpacking of a list:</p>
 <blockquote>
 <div><ul>
-<li><p>command line:</p>
+<li><p>exiftool command-line:</p>
 <blockquote>
 <div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>exiftool -P -DateTimeOriginal=&quot;2021:01:02 03:04:05&quot; -MakerNotes= &quot;spaces in filename.jpg&quot;
 </pre></div>
@@ -144,7 +144,32 @@
 </li>
 <li><p>PyExifTool:</p>
 <blockquote>
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="s2">&quot;-P&quot;</span><span class="p">,</span> <span class="s1">&#39;-DateTimeOriginal=&quot;2021:01:02 03:04:05&quot;&#39;</span><span class="p">,</span> <span class="s2">&quot;-MakerNotes=&quot;</span><span class="p">,</span> <span class="s2">&quot;spaces in filename.jpg&quot;</span><span class="p">])</span>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Parameters which need to be quoted on the command line generally do not need to be quoted in the parameters to PyExifTool.  In fact, quoting may have unintended behavior.</p>
+<p>In this example, <em>DateTimeOriginal</em> value is not quoted in the parameter to execute().</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">execute</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="s2">&quot;-P&quot;</span><span class="p">,</span> <span class="s2">&quot;-DateTimeOriginal=2021:01:02 03:04:05&quot;</span><span class="p">,</span> <span class="s2">&quot;-MakerNotes=&quot;</span><span class="p">,</span> <span class="s2">&quot;spaces in filename.jpg&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Getting JSON output using argument unpacking of a list:</p>
+<blockquote>
+<div><ul>
+<li><p>exiftool command-line:</p>
+<blockquote>
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>exiftool -j -XMP:all -JFIF:JFIFVersion /path/somefile.jpg
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>PyExifTool:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">execute_json</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="s2">&quot;-XMP:all&quot;</span><span class="p">,</span> <span class="s2">&quot;-JFIF:JFIFVersion&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/somefile.jpg&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -224,7 +249,7 @@ Dict: Composite:Megapixels = 0.00322
 </div>
 </div></blockquote>
 </li>
-<li><p>Get some tags multiple files</p>
+<li><p>Get some tags in multiple files</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">exiftool</span> <span class="kn">import</span> <span class="n">ExifToolHelper</span>
 <span class="k">with</span> <span class="n">ExifToolHelper</span><span class="p">()</span> <span class="k">as</span> <span class="n">et</span><span class="p">:</span>

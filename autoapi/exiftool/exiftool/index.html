@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>exiftool.exiftool &mdash; PyExifTool 0.5.3 documentation</title>
+  <title>exiftool.exiftool &mdash; PyExifTool 0.5.4 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -192,10 +192,14 @@ to undefined behaviour.</p>
 <li><p><strong>common_args</strong> (<em>list of str</em><em>, or </em><em>None.</em>) – <p>Pass in additional parameters for the stay-open instance of exiftool.</p>
 <p>Defaults to <code class="docutils literal notranslate"><span class="pre">['-G',</span> <span class="pre">'-n']</span></code> as this is the most common use case.</p>
 <ul>
-<li><p>-G separates the grouping</p></li>
-<li><p>-n (print conversion disabled) improves the speed and consistency of output, and is more machine-parsable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-G</span></code> (groupName level 1 enabled) separates the output with <em>groupName:tag</em> to disambiguate same-named tags under different groups.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span></code> (print conversion disabled) improves the speed and consistency of output, and is more machine-parsable</p></li>
 </ul>
 <p>Passed directly into <a class="reference internal" href="#exiftool.exiftool.ExifTool.common_args" title="exiftool.exiftool.ExifTool.common_args"><code class="xref py py-attr docutils literal notranslate"><span class="pre">common_args</span></code></a> property.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on your use case, there may be other useful grouping levels and options.  Search <a class="reference external" href="https://exiftool.org/exiftool_pod.html">Phil Harvey’s exiftool documentation</a> for <strong>groupNames</strong> and <strong>groupHeadings</strong> to get more info.</p>
+</div>
 </p></li>
 <li><p><strong>win_shell</strong> (<em>bool</em>) – <p>(Windows only) Minimizes the exiftool process.</p>
 <div class="admonition note">
@@ -415,7 +419,7 @@ If path given is not absolute, searches environment <code class="docutils litera
 
 <dl class="py method">
 <dt class="sig sig-object py" id="exiftool.exiftool.ExifTool.execute">
-<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exiftool.ExifTool.execute" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_bytes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.exiftool.ExifTool.execute" title="Permalink to this definition"></a></dt>
 <dd><p>Execute the given batch of parameters with <em>exiftool</em>.</p>
 <p>This method accepts any number of parameters and sends them to
 the attached <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> subprocess.  The process must be
@@ -426,9 +430,10 @@ the common options.  The <code class="docutils literal notranslate"><span class=
 end-of-output sentinel and returned as a <code class="docutils literal notranslate"><span class="pre">str</span></code> decoded
 based on the currently set <a class="reference internal" href="#exiftool.exiftool.ExifTool.encoding" title="exiftool.exiftool.ExifTool.encoding"><code class="xref py py-attr docutils literal notranslate"><span class="pre">encoding</span></code></a>,
 excluding the sentinel.</p>
-<p>The parameters must be of type <code class="docutils literal notranslate"><span class="pre">str</span></code>.  Use the <a class="reference internal" href="#exiftool.exiftool.ExifTool.encoding" title="exiftool.exiftool.ExifTool.encoding"><code class="xref py py-attr docutils literal notranslate"><span class="pre">encoding</span></code></a> property to change the
-encoding <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> accepts.  For filenames, this should be the
-system’s filesystem encoding.</p>
+<p>The parameters must be of type <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.
+<code class="docutils literal notranslate"><span class="pre">str</span></code> parameters are encoded to bytes automatically using the <a class="reference internal" href="#exiftool.exiftool.ExifTool.encoding" title="exiftool.exiftool.ExifTool.encoding"><code class="xref py py-attr docutils literal notranslate"><span class="pre">encoding</span></code></a> property.
+For filenames, this should be the system’s filesystem encoding.
+<code class="docutils literal notranslate"><span class="pre">bytes</span></code> parameters are untouched and passed directly to <code class="docutils literal notranslate"><span class="pre">exiftool</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This is the core method to interface with the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> subprocess.</p>
@@ -436,13 +441,16 @@ system’s filesystem encoding.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>params</strong> (<em>one</em><em> or </em><em>more string parameters</em>) – <p>One or more parameters to send to the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> subprocess.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>one</em><em> or </em><em>more string parameters</em>) – <p>One or more parameters to send to the <code class="docutils literal notranslate"><span class="pre">exiftool</span></code> subprocess.</p>
 <p>Typically passed in via <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists">Unpacking Argument Lists</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The parameters to this function must be type <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<p>The parameters to this function must be type <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.</p>
 </div>
-</p>
+</p></li>
+<li><p><strong>raw_bytes</strong> (<em>bool</em>) – If True, returns bytes.  Default behavior returns a str</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
@@ -456,10 +464,12 @@ system’s filesystem encoding.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference internal" href="../exceptions/index.html#exiftool.exceptions.ExifToolNotRunning" title="exiftool.exceptions.ExifToolNotRunning"><strong>ExifToolNotRunning</strong></a> – If attempting to execute when not running (<a class="reference internal" href="#exiftool.exiftool.ExifTool.running" title="exiftool.exiftool.ExifTool.running"><code class="xref py py-attr docutils literal notranslate"><span class="pre">running</span></code></a> == False)</p></li>
 <li><p><a class="reference internal" href="../exceptions/index.html#exiftool.exceptions.ExifToolVersionError" title="exiftool.exceptions.ExifToolVersionError"><strong>ExifToolVersionError</strong></a> – If unexpected text was returned from the command while parsing out the sentinels</p></li>
+<li><p><strong>UnicodeDecodeError</strong> – If the <a class="reference internal" href="#exiftool.exiftool.ExifTool.encoding" title="exiftool.exiftool.ExifTool.encoding"><code class="xref py py-attr docutils literal notranslate"><span class="pre">encoding</span></code></a> is not specified properly, it may be possible for <code class="docutils literal notranslate"><span class="pre">.decode()</span></code> method to raise this error</p></li>
+<li><p><strong>TypeError</strong> – If <code class="docutils literal notranslate"><span class="pre">params</span></code> argument is not <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">bytes</span></code></p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
+<dd class="field-even"><p>Union[str, bytes]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -534,7 +544,7 @@ name of the file it corresponds to in the key <code class="docutils literal notr
 <p class="admonition-title">Note</p>
 <p>This property can be read at any time, and is not dependent on running state of ExifTool.</p>
 <p>It is INTENTIONALLY <em>NOT</em> CLEARED on exiftool termination, to allow
-for executing a command and terminating, but still have result available.</p>
+for executing a command and terminating, but still having the result available.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -549,13 +559,18 @@ for executing a command and terminating, but still have result available.</p>
 <dd><p><code class="docutils literal notranslate"><span class="pre">STDERR</span></code> for most recent result from execute()</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>The return type can be either <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.</p>
+<p>If the most recent call to execute() <code class="docutils literal notranslate"><span class="pre">raw_bytes=True</span></code>, then this will return <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.  Otherwise this will be <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>This property can be read at any time, and is not dependent on running state of ExifTool.</p>
 <p>It is INTENTIONALLY <em>NOT</em> CLEARED on exiftool termination, to allow
-for executing a command and terminating, but still have result available.</p>
+for executing a command and terminating, but still having the result available.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Optional[str]</p>
+<dd class="field-odd"><p>Optional[Union[str, bytes]]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -566,13 +581,18 @@ for executing a command and terminating, but still have result available.</p>
 <dd><p><code class="docutils literal notranslate"><span class="pre">STDOUT</span></code> for most recent result from execute()</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>The return type can be either str or bytes.</p>
+<p>If the most recent call to execute() <code class="docutils literal notranslate"><span class="pre">raw_bytes=True</span></code>, then this will return <code class="docutils literal notranslate"><span class="pre">bytes</span></code>.  Otherwise this will be <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>This property can be read at any time, and is not dependent on running state of ExifTool.</p>
 <p>It is INTENTIONALLY <em>NOT</em> CLEARED on exiftool termination, to allow
-for executing a command and terminating, but still have result available.</p>
+for executing a command and terminating, but still having the result available.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Optional[str]</p>
+<dd class="field-odd"><p>Optional[Union[str, bytes]]</p>
 </dd>
 </dl>
 </dd></dl>

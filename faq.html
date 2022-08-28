@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Frequently Asked Questions &mdash; PyExifTool 0.5.3 documentation</title>
+  <title>Frequently Asked Questions &mdash; PyExifTool 0.5.4 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -58,6 +58,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#ways-to-make-the-ouptut-match">Ways to make the ouptut match</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#i-m-getting-an-error-how-do-i-debug-pyexiftool-output">I’m getting an error! How do I debug PyExifTool output?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
@@ -93,7 +94,7 @@
 <section id="pyexiftool-output-is-different-from-the-exiftool-command-line">
 <h2>PyExifTool output is different from the exiftool command line<a class="headerlink" href="#pyexiftool-output-is-different-from-the-exiftool-command-line" title="Permalink to this headline"></a></h2>
 <p>One of the most frequently asked questions relates to the <em>default output</em> of PyExifTool.</p>
-<p>For example, using the <a class="reference external" href="https://github.com/sylikc/pyexiftool/blob/master/tests/images/rose.jpg">rose.jpg in tests</a>, let’s get <strong>all JFIF tags</strong>:</p>
+<p>For example, using the <a class="reference external" href="https://github.com/sylikc/pyexiftool/blob/master/tests/files/rose.jpg">rose.jpg in tests</a>, let’s get <strong>all JFIF tags</strong>:</p>
 <section id="default-exiftool-output">
 <h3>Default exiftool output<a class="headerlink" href="#default-exiftool-output" title="Permalink to this headline"></a></h3>
 <p>$ <code class="docutils literal notranslate"><span class="pre">exiftool</span> <span class="pre">-JFIF:all</span> <span class="pre">rose.jpg</span></code></p>
@@ -128,26 +129,30 @@ Y Resolution                    : 72
 <p>The <code class="docutils literal notranslate"><span class="pre">-n</span></code> disables <em>print conversion</em> which displays <strong>raw tag values</strong>, making the output more <strong>machine-parseable</strong>.</p>
 <p>When <em>print conversion</em> is enabled, <em>some</em> raw values may be translated to prettier <strong>human-readable</strong> text.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-G</span></code> enables <em>group name (level 1)</em> option which displays a group in the output to help disambiguate tags with the same name in different groups.</p>
+<p>For example, <em>-DateCreated</em> can be ambiguous if both <em>-IPTC:DateCreated</em> and <em>-XMP:DateCreated</em> exists and have different values.  <code class="docutils literal notranslate"><span class="pre">-G</span></code> would display which one was returned by <em>exiftool</em>.</p>
+</div>
 <p>Read the documentation for the ExifTool constructor <code class="docutils literal notranslate"><span class="pre">common_args</span></code> parameter for more details: <a class="reference internal" href="reference/1-exiftool.html#exiftool.ExifTool.__init__" title="exiftool.ExifTool.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">exiftool.ExifTool.__init__()</span></code></a>.</p>
 <p>(You can also change <code class="docutils literal notranslate"><span class="pre">common_args</span></code> on an existing instance using <a class="reference internal" href="reference/1-exiftool.html#exiftool.ExifTool.common_args" title="exiftool.ExifTool.common_args"><code class="xref py py-attr docutils literal notranslate"><span class="pre">exiftool.ExifTool.common_args</span></code></a>, as long as the subprocess is not <a class="reference internal" href="reference/1-exiftool.html#exiftool.ExifTool.running" title="exiftool.ExifTool.running"><code class="xref py py-attr docutils literal notranslate"><span class="pre">exiftool.ExifTool.running</span></code></a>)</p>
 </section>
 <section id="ways-to-make-the-ouptut-match">
 <h3>Ways to make the ouptut match<a class="headerlink" href="#ways-to-make-the-ouptut-match" title="Permalink to this headline"></a></h3>
-<p>So if you want to have the ouput match (useful for debugging) between PyExifTool and exiftool, either:</p>
-<ul class="simple">
-<li><p><strong>Enable print conversion on exiftool command line</strong>:</p></li>
-</ul>
-<p>$ <code class="docutils literal notranslate"><span class="pre">exiftool</span> <span class="pre">-G</span> <span class="pre">-n</span> <span class="pre">-JFIF:all</span> <span class="pre">rose.jpg</span></code></p>
+<p>So if you want to have the ouput match (<em>useful for debugging</em>) between PyExifTool and exiftool, either:</p>
+<ul>
+<li><p><strong>Enable print conversion on exiftool command line</strong>:</p>
 <blockquote>
-<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[JFIF]          JFIF Version                    : 1 1
+<div><p>$ <code class="docutils literal notranslate"><span class="pre">exiftool</span> <span class="pre">-G</span> <span class="pre">-n</span> <span class="pre">-JFIF:all</span> <span class="pre">rose.jpg</span></code></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[JFIF]          JFIF Version                    : 1 1
 [JFIF]          Resolution Unit                 : 1
 [JFIF]          X Resolution                    : 72
 [JFIF]          Y Resolution                    : 72
 </pre></div>
 </div>
 </div></blockquote>
-<ul>
-<li><p><strong>Disable print conversion and grouping in PyExifTool</strong>:</p>
+</li>
+<li><p><strong>Disable print conversion and group name in PyExifTool</strong>:</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">exiftool</span>
 <span class="k">with</span> <span class="n">exiftool</span><span class="o">.</span><span class="n">ExifTool</span><span class="p">(</span><span class="n">common_args</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="k">as</span> <span class="n">et</span><span class="p">:</span>
@@ -165,6 +170,20 @@ Y Resolution                    : 72
 </li>
 </ul>
 </section>
+</section>
+<section id="i-m-getting-an-error-how-do-i-debug-pyexiftool-output">
+<h2>I’m getting an error! How do I debug PyExifTool output?<a class="headerlink" href="#i-m-getting-an-error-how-do-i-debug-pyexiftool-output" title="Permalink to this headline"></a></h2>
+<p>To assist debugging, ExifTool has a <code class="docutils literal notranslate"><span class="pre">logger</span></code> in the constructor <a class="reference internal" href="reference/1-exiftool.html#exiftool.ExifTool.__init__" title="exiftool.ExifTool.__init__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">exiftool.ExifTool.__init__()</span></code></a>.  You can also specify the logger after constructing the object by using the <a class="reference internal" href="reference/1-exiftool.html#exiftool.ExifTool.logger" title="exiftool.ExifTool.logger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">exiftool.ExifTool.logger</span></code></a> property.</p>
+<p>First construct the logger object.  The example below using the most common way to construct using <code class="docutils literal notranslate"><span class="pre">getLogger(__name__)</span></code>.  See more examples on <a class="reference external" href="https://docs.python.org/3/howto/logging.html#advanced-logging-tutorial">Python logging - Advanced Logging Tutorial</a></p>
+<p>Example usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">exiftool</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">exiftool</span><span class="o">.</span><span class="n">ExifToolHelper</span><span class="p">(</span><span class="n">logger</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">))</span> <span class="k">as</span> <span class="n">et</span><span class="p">:</span>
+        <span class="n">et</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;missingfile.jpg&quot;</span><span class="p">,)</span>
+</pre></div>
+</div>
 </section>
 </section>
 

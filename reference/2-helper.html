@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Class exiftool.ExifToolHelper &mdash; PyExifTool 0.5.3 documentation</title>
+  <title>Class exiftool.ExifToolHelper &mdash; PyExifTool 0.5.4 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -93,7 +93,7 @@
              
   <section id="class-exiftool-exiftoolhelper">
 <h1>Class exiftool.ExifToolHelper<a class="headerlink" href="#class-exiftool-exiftoolhelper" title="Permalink to this headline"></a></h1>
-<div class="graphviz"><img src="../_images/inheritance-ca4d6213490de20a3372d9ac63c756c40358db6d.png" alt="Inheritance diagram of exiftool.ExifToolHelper" usemap="#inheritance0f085a72dd" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="../_images/inheritance-5f7c599dfbe020b2de1a2d435bc594f03af787bf.png" alt="Inheritance diagram of exiftool.ExifToolHelper" usemap="#inheritance0f085a72dd" class="inheritance graphviz" /></div>
 <map id="inheritance0f085a72dd" name="inheritance0f085a72dd">
 <area shape="rect" id="node1" href="1-exiftool.html#module-exiftool.ExifTool" target="_top" title="Run the `exiftool` command&#45;line tool and communicate with it." alt="" coords="19,19,189,91"/>
 <area shape="rect" id="node2" href="#module-exiftool.ExifToolHelper" target="_top" title="This class extends the low&#45;level :py:class:`exiftool.ExifTool` class with &#39;wrapper&#39;/&#39;helper&#39; functionality" alt="" coords="237,19,466,91"/>
@@ -218,15 +218,19 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="exiftool.ExifToolHelper.execute">
-<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolHelper.</span></span><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolHelper.execute" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">exiftool.ExifToolHelper.</span></span><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#exiftool.ExifToolHelper.execute" title="Permalink to this definition"></a></dt>
 <dd><p>Override the <a class="reference internal" href="1-exiftool.html#exiftool.ExifTool.execute" title="exiftool.ExifTool.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">exiftool.ExifTool.execute()</span></code></a> method</p>
 <p>Adds logic to auto-start if not running, if <a class="reference internal" href="#exiftool.ExifToolHelper.auto_start" title="exiftool.ExifToolHelper.auto_start"><code class="xref py py-attr docutils literal notranslate"><span class="pre">auto_start</span></code></a> == True</p>
+<p>Adds logic to str() any parameter which is not a str or bytes.  (This allows passing in objects like Path _without_ casting before passing it in.)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference internal" href="../autoapi/exiftool/exceptions/index.html#exiftool.exceptions.ExifToolExecuteError" title="exiftool.exceptions.ExifToolExecuteError"><strong>ExifToolExecuteError</strong></a> – If <a class="reference internal" href="#exiftool.ExifToolHelper.check_execute" title="exiftool.ExifToolHelper.check_execute"><code class="xref py py-attr docutils literal notranslate"><span class="pre">check_execute</span></code></a> == True, and exit status was non-zero</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>params</strong> (<em>Any</em>) – </p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[str, bytes]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -265,9 +269,13 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>files</strong> (<em>str</em><em> or </em><em>list</em>) – <p>File(s) to be worked on.</p>
 <ul>
-<li><p>If a <code class="docutils literal notranslate"><span class="pre">str</span></code> is provided, it will get tags for a single file</p></li>
-<li><p>If an iterable is provided, the list is copied and any non-basestring elements are converted to str (to support <code class="docutils literal notranslate"><span class="pre">PurePath</span></code> and other similar objects)</p></li>
+<li><p>If a non-iterable is provided, it will get tags for a single item (str(non-iterable))</p></li>
+<li><p>If an iterable is provided, the list is passed into <code class="xref py py-meth docutils literal notranslate"><span class="pre">execute_json()</span></code> verbatim.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any files/params which are not bytes/str will be casted to a str in <a class="reference internal" href="#exiftool.ExifToolHelper.execute" title="exiftool.ExifToolHelper.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a>.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Currently, filenames are NOT checked for existence!  That is left up to the caller.</p>
@@ -275,7 +283,9 @@
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Wildcard strings are valid and passed verbatim to exiftool.</p>
-<p>However, exiftool’s wildcard matching/globbing may be different than Python’s matching/globbing, which may cause unexpected behavior if you’re using one and comparing the result to the other.  Read <a class="reference external" href="https://exiftool.org/mistakes.html#M2">ExifTool Common Mistakes - Over-use of Wildcards in File Names</a> for some related info.</p>
+<p>However, exiftool’s wildcard matching/globbing may be different than Python’s matching/globbing,
+which may cause unexpected behavior if you’re using one and comparing the result to the other.
+Read <a class="reference external" href="https://exiftool.org/mistakes.html#M2">ExifTool Common Mistakes - Over-use of Wildcards in File Names</a> for some related info.</p>
 </div>
 </p></li>
 <li><p><strong>tags</strong> (<em>str</em><em>, </em><em>list</em><em>, or </em><em>None</em>) – <p>Tag(s) to read.  If tags is None, or [], method will returns all tags</p>
@@ -284,7 +294,7 @@
 <p>The tag names may include group names, as usual in the format <code class="docutils literal notranslate"><span class="pre">&lt;group&gt;:&lt;tag&gt;</span></code>.</p>
 </div>
 </p></li>
-<li><p><strong>params</strong> (<em>str</em><em>, </em><em>list</em><em>, or </em><em>None</em>) – Optional parameter(s) to send to <em>exiftool</em></p></li>
+<li><p><strong>params</strong> (<em>Any</em><em>, </em><em>List</em><em>[</em><em>Any</em><em>]</em><em>, or </em><em>None</em>) – Optional parameter(s) to send to <em>exiftool</em></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -324,9 +334,13 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>files</strong> (<em>str</em><em> or </em><em>list</em>) – <p>File(s) to be worked on.</p>
 <ul>
-<li><p>If a <code class="docutils literal notranslate"><span class="pre">str</span></code> is provided, it will set tags for a single file</p></li>
-<li><p>If an iterable is provided, the list is copied and any non-basestring elements are converted to str (to support <code class="docutils literal notranslate"><span class="pre">PurePath</span></code> and other similar objects)</p></li>
+<li><p>If a non-iterable is provided, it will get tags for a single item (str(non-iterable))</p></li>
+<li><p>If an iterable is provided, the list is passed into <code class="xref py py-meth docutils literal notranslate"><span class="pre">execute_json()</span></code> verbatim.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any files/params which are not bytes/str will be casted to a str in <a class="reference internal" href="#exiftool.ExifToolHelper.execute" title="exiftool.ExifToolHelper.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a>.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Currently, filenames are NOT checked for existence!  That is left up to the caller.</p>
@@ -334,7 +348,9 @@
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Wildcard strings are valid and passed verbatim to exiftool.</p>
-<p>However, exiftool’s wildcard matching/globbing may be different than Python’s matching/globbing, which may cause unexpected behavior if you’re using one and comparing the result to the other.  Read <a class="reference external" href="https://exiftool.org/mistakes.html#M2">ExifTool Common Mistakes - Over-use of Wildcards in File Names</a> for some related info.</p>
+<p>However, exiftool’s wildcard matching/globbing may be different than Python’s matching/globbing,
+which may cause unexpected behavior if you’re using one and comparing the result to the other.
+Read <a class="reference external" href="https://exiftool.org/mistakes.html#M2">ExifTool Common Mistakes - Over-use of Wildcards in File Names</a> for some related info.</p>
 </div>
 </p></li>
 <li><p><strong>tags</strong> (<em>dict</em>) – <p>Tag(s) to write.</p>
